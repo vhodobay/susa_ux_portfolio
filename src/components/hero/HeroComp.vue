@@ -23,12 +23,15 @@
     <div class="qoute-text">
       <blockquote>
         &quot;
-        {{introQuote}}
+        {{ introQuote }}
         &quot;
       </blockquote>
       <cite>
-        &mdash; {{quoteAuthor}} &mdash;
+        &mdash; {{ quoteAuthor }} &mdash;
       </cite>
+    </div>
+    <div class="footprints">
+      <img src="../../assets/images/SVG/footprints.svg" alt="footprints">
     </div>
 
   </div>
@@ -102,12 +105,20 @@ export default {
   font-size: 2.6rem;
   align-self: center;
 }
+
 .qoute-text {
   position: absolute;
   bottom: 20vh;
   text-align: center;
   width: 100%;
   font-size: 1.6rem;
+}
+
+.footprints {
+  position: absolute;
+  right: 50vw;
+  bottom: 3rem;
+  width: 5rem;
 }
 
 </style>
