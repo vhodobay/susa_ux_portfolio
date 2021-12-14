@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="name">
-      Susa Horvath
+      <router-link to="/">Susa Horváth</router-link>
+
     </div>
 
     <div class="menu-items">
@@ -10,7 +11,7 @@
           <a href="#">My Work</a>
         </li>
         <li>
-          <a href="#">About</a>
+          <router-link to="/about">About</router-link>
         </li>
         <li>
           <a href="#">Contact</a>
@@ -34,12 +35,26 @@ export default {
   font-weight: 600;
   justify-content: space-between;
   border-bottom: solid .1rem black;
+  text-decoration: none;
+
 }
 
 .name {
   text-transform: uppercase;
   align-self: center;
   margin: 0 1rem;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+
+    &.router-link-exact-active {
+      color: #42b983;
+      text-decoration: none;
+      font-size: 1.6rem;
+
+    }
+  }
 }
 
 .menu-items {

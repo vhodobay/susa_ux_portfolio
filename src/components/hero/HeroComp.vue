@@ -104,7 +104,7 @@ export default {
 }
 .qoute-text {
   position: absolute;
-  bottom: 13rem;
+  bottom: 20vh;
   text-align: center;
   width: 100%;
   font-size: 1.6rem;
