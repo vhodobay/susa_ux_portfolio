@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       introText: "Hi, I'm Susa, Berlin based UX designer life long in training. " +
-          "As a mother my super skill is emphaty, my must is a good logistic skill and always find a way to reach win-win situations.",
+          "As a mother my super skill is emphaty, my must is a good logistic skill and always find a way to reach win-win situations. ",
       introQuote: "We should not feel embarrassed by our difficulties, only by our failure to grow anything beautiful from them. \n",
       quoteAuthor: "Alain de Botton",
       bottomInView: false,
