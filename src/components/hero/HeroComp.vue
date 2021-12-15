@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="daru-left">
+    <div v-if="wideScreen" class="daru-left">
       <img src="../../assets/images/SVG/daru.svg" alt="daru">
     </div>
-    <div class="daru-right_1">
+    <div v-if="wideScreen" class="daru-right_1">
       <img src="../../assets/images/SVG/daru.svg" alt="daru">
     </div>
-    <div class="daru-right_2" :class="{opt_1: !bottomInView, opt_2:bottomInView}">
+    <div v-if="wideScreen" class="daru-right_2" :class="{opt_1: !bottomInView, opt_2:bottomInView}">
       <img src="../../assets/images/SVG/daru.svg" alt="daru">
     </div>
 
@@ -25,10 +25,10 @@
 
   <div class="footprint-container">
     <div class="footprints fp_1"></div>
-<transition-group name="fade" >
-  <div v-show="bottomInView" class="footprints fp_2" key="1"></div>
-  <div v-show="bottomInView" class="footprints fp_3" key="2"></div>
-</transition-group>
+    <transition-group name="fade">
+      <div v-show="bottomInView" class="footprints fp_2" key="1"></div>
+      <div v-show="bottomInView" class="footprints fp_3" key="2"></div>
+    </transition-group>
   </div>
   <div id="hero-bottom"></div>
 </template>
@@ -53,10 +53,10 @@ export default {
   methods: {
     onElementIntersects(entries) {
       if (entries[0].isIntersecting) {
-        setTimeout(()=>{
+        setTimeout(() => {
           this.bottomInView = true
 
-        },3000)
+        }, 3000)
       }
     }
   },
@@ -69,7 +69,13 @@ export default {
   },
   beforeUnmount() {
     this.intersectionObserver.unobserve(document.querySelector('#hero-bottom'))
+  },
+  computed: {
+    wideScreen() {
+      return window.innerWidth >= 500;
+    }
   }
+
 }
 </script>
 
@@ -106,6 +112,7 @@ export default {
 .opt_1 {
   transform: scaleX(-1);
 }
+
 .opt_2 {
   transform: scaleX(-1) rotate(40deg);
   transition: all 1s;
