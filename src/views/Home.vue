@@ -32,4 +32,6 @@ export default {
   z-index: 3;
   background-color: white;
 }
+
+
 </style>

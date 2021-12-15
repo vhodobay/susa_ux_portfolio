@@ -6,7 +6,7 @@
     <div class="daru-right_1">
       <img src="../../assets/images/SVG/daru.svg" alt="daru">
     </div>
-    <div class="daru-right_2">
+    <div class="daru-right_2" :class="{opt_1: !bottomInView, opt_2:bottomInView}">
       <img src="../../assets/images/SVG/daru.svg" alt="daru">
     </div>
 
@@ -19,34 +19,56 @@
         <p>{{ introText }}</p>
       </div>
     </div>
-
-    <div class="qoute-text">
-      <blockquote>
-        &quot;
-        {{ introQuote }}
-        &quot;
-      </blockquote>
-      <cite>
-        &mdash; {{ quoteAuthor }} &mdash;
-      </cite>
-    </div>
-    <div class="footprints">
-      <img src="../../assets/images/SVG/footprints.svg" alt="footprints">
-    </div>
-
   </div>
+
+  <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
+
+  <div class="footprint-container">
+    <div class="footprints fp_1"></div>
+<transition-group name="fade" >
+  <div v-show="bottomInView" class="footprints fp_2" key="1"></div>
+  <div v-show="bottomInView" class="footprints fp_3" key="2"></div>
+</transition-group>
+  </div>
+  <div id="hero-bottom"></div>
 </template>
 
 <script>
+import TheQuote from "@/components/hero/theQuote";
+
+
 export default {
   name: "HeroComp",
+  components: {TheQuote},
   data() {
     return {
       introText: "Hi, I'm Susa, Berlin based UX designer life long in training." +
           "As a mother my super skill is emphaty, my must is a good logistic skill and always find a way to reach win-win situations.",
       introQuote: "We should not feel embarrassed by our difficulties, only by our failure to grow anything beautiful from them. \n",
-      quoteAuthor: "Alain de Botton"
+      quoteAuthor: "Alain de Botton",
+      bottomInView: false,
+      intersectionObserver: null
     }
+  },
+  methods: {
+    onElementIntersects(entries) {
+      if (entries[0].isIntersecting) {
+        setTimeout(()=>{
+          this.bottomInView = true
+
+        },3000)
+      }
+    }
+  },
+  mounted() {
+    this.intersectionObserver = new IntersectionObserver(this.onElementIntersects, {
+      rootMargin: '0px',
+      threshold: 1.0
+    })
+    this.intersectionObserver.observe(document.querySelector('#hero-bottom'))
+  },
+  beforeUnmount() {
+    this.intersectionObserver.unobserve(document.querySelector('#hero-bottom'))
   }
 }
 </script>
@@ -54,15 +76,14 @@ export default {
 <style scoped lang="scss">
 .container {
   position: relative;
-  margin-top: 6rem;
-  min-height: 100vh;
+  margin-top: 7rem;
 
 }
 
 .daru-left {
   width: 15rem;
   position: absolute;
-  top: 10rem;
+  top: 10%;
   left: 2rem;
 
 }
@@ -70,7 +91,7 @@ export default {
 .daru-right_1 {
   width: 22rem;
   position: absolute;
-  top: 1rem;
+  top: 3vh;
   right: 2rem;
   transform: scaleX(-1);
 }
@@ -80,13 +101,20 @@ export default {
   position: absolute;
   top: 40vh;
   right: 2rem;
+}
+
+.opt_1 {
+  transform: scaleX(-1);
+}
+.opt_2 {
   transform: scaleX(-1) rotate(40deg);
+  transition: all 1s;
+
 }
 
 .text-box {
-  position: absolute;
-  margin-top: 40vh;
-  transform: translateY(-50%);
+  position: relative;
+  top: 5vh;
   display: flex;
   justify-content: center;
 }
@@ -106,19 +134,53 @@ export default {
   align-self: center;
 }
 
-.qoute-text {
-  position: absolute;
-  bottom: 20vh;
-  text-align: center;
+.footprint-container {
   width: 100%;
-  font-size: 1.6rem;
 }
 
 .footprints {
-  position: absolute;
-  right: 50vw;
-  bottom: 3rem;
+  background-image: url("../../assets/images/SVG/footprints.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 3rem auto;
+  height: 5rem;
   width: 5rem;
+}
+
+.fp_1 {
+  transform: translateX(25vw);
+}
+
+.fp_2 {
+  transform: translateX(12vw);
+}
+
+.fp_3 {
+  transition: .3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.quote {
+  position: relative;
+  top: 5vh;
+}
+
+#hero-bottom {
+  height: 1px;
+  width: 100%;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s 3s;
 }
 
 </style>
