@@ -1,15 +1,5 @@
 <template>
   <div class="container">
-    <div v-if="wideScreen" class="daru-left">
-      <img src="../../assets/images/SVG/daru.svg" alt="daru">
-    </div>
-    <div v-if="wideScreen" class="daru-right_1">
-      <img src="../../assets/images/SVG/daru.svg" alt="daru">
-    </div>
-    <div v-if="wideScreen" class="daru-right_2" :class="{opt_1: !bottomInView, opt_2:bottomInView}">
-      <img src="../../assets/images/SVG/daru.svg" alt="daru">
-    </div>
-
     <div class="text-box">
 
       <div class="text-image">
@@ -20,6 +10,17 @@
       </div>
     </div>
   </div>
+
+  <div v-if="wideScreen" class="daru-left">
+    <img src="../../assets/images/SVG/daru.svg" alt="daru">
+  </div>
+  <div v-if="wideScreen" class="daru-right_1">
+    <img src="../../assets/images/SVG/daru.svg" alt="daru">
+  </div>
+  <div v-if="wideScreen" class="daru-right_2" :class="{opt_1: !bottomInView, opt_2:bottomInView}">
+    <img src="../../assets/images/SVG/daru.svg" alt="daru">
+  </div>
+
 
   <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
 
@@ -35,6 +36,8 @@
 
 <script>
 import TheQuote from "@/components/hero/theQuote";
+import {API} from "aws-amplify";
+import {getIntroductionText} from '@/graphql/queries'
 
 
 export default {
@@ -42,10 +45,10 @@ export default {
   components: {TheQuote},
   data() {
     return {
-      introText: "Hi, I'm Susa, Berlin based UX designer life long in training. " +
-          "As a mother my super skill is emphaty, my must is a good logistic skill and always find a way to reach win-win situations. ",
-      introQuote: "We should not feel embarrassed by our difficulties, only by our failure to grow anything beautiful from them. \n",
-      quoteAuthor: "Alain de Botton",
+
+      introText: "",
+      introQuote: "",
+      quoteAuthor: "",
       bottomInView: false,
       intersectionObserver: null
     }
@@ -58,9 +61,21 @@ export default {
 
         }, 3000)
       }
+    },
+    async getIntroText() {
+      const introTexts = await API.graphql({
+        query: getIntroductionText,
+        variables: {id: "fe260315-4b54-4230-b4c3-cc46312d2630"}
+      })
+
+
+      this.introText = introTexts.data.getIntroductionText.text
+      this.introQuote = introTexts.data.getIntroductionText.quote
+      this.quoteAuthor = introTexts.data.getIntroductionText.author
     }
   },
   mounted() {
+    this.getIntroText()
     this.intersectionObserver = new IntersectionObserver(this.onElementIntersects, {
       rootMargin: '0px',
       threshold: 1.0
@@ -86,10 +101,11 @@ export default {
 }
 
 .daru-left {
-  width: 15rem;
+  width: 11rem;
   position: absolute;
-  top: 10%;
-  left: 2rem;
+  top: 20%;
+  right: 24%;
+  transform: rotate(30deg);
 
 }
 
@@ -98,7 +114,7 @@ export default {
   position: absolute;
   top: 3vh;
   right: 2rem;
-  transform: scaleX(-1);
+  transform: scaleX(-1) rotate(20deg);
 }
 
 .daru-right_2 {
@@ -122,7 +138,9 @@ export default {
   position: relative;
   top: 5vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  text-align: center;
+
 }
 
 .text-image {
@@ -135,7 +153,7 @@ export default {
 }
 
 .text-text {
-  width: 30%;
+  width: 40%;
   font-size: 2.6rem;
   align-self: center;
 }
@@ -172,6 +190,7 @@ export default {
 .quote {
   position: relative;
   top: 5vh;
+
 }
 
 #hero-bottom {

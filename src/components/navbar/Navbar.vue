@@ -1,29 +1,29 @@
 <template>
   <div>
-  <div class="container">
+    <div class="container">
 
-    <div class="name">
+      <div class="name">
 
-      <router-link to="/">Susa Horváth</router-link>
+        <router-link to="/">Susa Horváth</router-link>
+
+      </div>
+
+      <div class="menu-items">
+        <ul>
+          <li>
+            <router-link to="/my-work">My Work</router-link>
+          </li>
+          <li>
+            <router-link to="/about">About</router-link>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+
 
     </div>
-
-    <div class="menu-items">
-      <ul>
-        <li>
-          <a href="#">My Work</a>
-        </li>
-        <li>
-          <router-link to="/about">About</router-link>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-
-
-  </div>
     <div class="line"></div>
 
   </div>
@@ -61,14 +61,13 @@ export default {
   text-transform: uppercase;
   align-self: center;
   margin: 0 4rem;
-  font-size: 2rem;
+  font-size: 2.6rem;
   color: #2c3e50;
 
 
   a {
     font-weight: bold;
     color: #2c3e50;
-
     text-decoration: none;
 
     &.router-link-exact-active {
@@ -80,7 +79,7 @@ export default {
 
 .menu-items {
   display: inline;
-
+  text-transform: uppercase;
 
   ul {
     list-style: none;
@@ -103,10 +102,11 @@ export default {
 .line {
 
   display: block;
-  background-image: url("../../assets/images/SVG/Asset 5.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  //background-image: url("../../assets/images/SVG/Asset 5.svg");
+  //background-repeat: no-repeat;
+  //background-size: cover;
   height: 1rem;
   width: 100%;
+  border-bottom: .2rem solid black;
 }
 </style>

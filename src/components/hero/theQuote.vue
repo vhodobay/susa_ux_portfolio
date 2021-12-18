@@ -21,7 +21,8 @@ export default {
 <style scoped lang="scss">
 .qoute-text {
   font-size: 2.6rem;
-  width: 60%;
-  margin: 0 auto;
+  font-weight: bold;
+  width: 70%;
+  text-align: center;
 }
 </style>
