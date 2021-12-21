@@ -3,7 +3,7 @@
     <div class="text-box">
 
       <div class="text-image">
-        <img src="../../assets/images/susaport.jpg" alt="susa image">
+        <img src="../../assets/images/JPG/susaportrait-80.jpg" alt="susa image">
       </div>
       <div class="text-text">
         <p>{{ introText }}</p>
@@ -11,38 +11,33 @@
     </div>
   </div>
 
-  <div v-if="wideScreen" class="daru-left">
-    <img src="../../assets/images/SVG/daru.svg" alt="daru">
-  </div>
-  <div v-if="wideScreen" class="daru-right_1">
-    <img src="../../assets/images/SVG/daru.svg" alt="daru">
-  </div>
-  <div v-if="wideScreen" class="daru-right_2" :class="{opt_1: !bottomInView, opt_2:bottomInView}">
-    <img src="../../assets/images/SVG/daru.svg" alt="daru">
+  <cranes-comp :move-the-bird="false" :wide-screen="wideScreen"></cranes-comp>
+
+  <div class="quote-cont">
+    <div class="yellow-liner"></div>
+    <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
+
   </div>
 
 
-  <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
 
-  <div class="footprint-container">
-    <div class="footprints fp_1"></div>
-    <transition-group name="fade">
-      <div v-show="bottomInView" class="footprints fp_2" key="1"></div>
-      <div v-show="bottomInView" class="footprints fp_3" key="2"></div>
-    </transition-group>
-  </div>
+
+
   <div id="hero-bottom"></div>
+
+
 </template>
 
 <script>
 import TheQuote from "@/components/hero/theQuote";
 import {API} from "aws-amplify";
 import {getIntroductionText} from '@/graphql/queries'
+import CranesComp from "@/components/ui/cranesComp";
 
 
 export default {
   name: "HeroComp",
-  components: {TheQuote},
+  components: {CranesComp, TheQuote},
   data() {
     return {
 
@@ -96,42 +91,6 @@ export default {
 <style scoped lang="scss">
 .container {
   position: relative;
-  margin-top: 7rem;
-
-}
-
-.daru-left {
-  width: 11rem;
-  position: absolute;
-  top: 20%;
-  right: 24%;
-  transform: rotate(30deg);
-
-}
-
-.daru-right_1 {
-  width: 22rem;
-  position: absolute;
-  top: 3vh;
-  right: 2rem;
-  transform: scaleX(-1) rotate(20deg);
-}
-
-.daru-right_2 {
-  width: 22rem;
-  position: absolute;
-  top: 40vh;
-  right: 2rem;
-}
-
-.opt_1 {
-  transform: scaleX(-1);
-}
-
-.opt_2 {
-  transform: scaleX(-1) rotate(40deg);
-  transition: all 1s;
-
 }
 
 .text-box {
@@ -139,12 +98,13 @@ export default {
   top: 5vh;
   display: flex;
   justify-content: flex-start;
-  text-align: center;
+  text-align: start;
 
 }
 
 .text-image {
   min-width: 20%;
+
 
   img {
     width: 20vw;
@@ -158,39 +118,17 @@ export default {
   align-self: center;
 }
 
-.footprint-container {
-  width: 100%;
-}
 
-.footprints {
-  background-image: url("../../assets/images/SVG/footprints.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin: 3rem auto;
-  height: 5rem;
-  width: 5rem;
-}
-
-.fp_1 {
-  transform: translateX(25vw);
-}
-
-.fp_2 {
-  transform: translateX(12vw);
-}
-
-.fp_3 {
-  transition: .3s ease;
-
-  &:hover {
-    transform: scale(1.2);
-  }
+.quote-cont {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
 }
 
 .quote {
+  text-align: start;
   position: relative;
   top: 5vh;
-
 }
 
 #hero-bottom {

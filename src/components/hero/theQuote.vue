@@ -1,5 +1,5 @@
 <template>
-  <div class="qoute-text">
+  <div class="quote-text">
     <blockquote>
       &quot;
       {{ introQuote }}
@@ -14,15 +14,19 @@
 <script>
 export default {
   name: "theQuote",
-  props:["introQuote", "quoteAuthor"]
+  props: ["introQuote", "quoteAuthor"]
 }
 </script>
 
 <style scoped lang="scss">
-.qoute-text {
-  font-size: 2.6rem;
-  font-weight: bold;
+.quote-text {
+
   width: 70%;
-  text-align: center;
+
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 3rem;
+
+  line-height: 2;
+  font-weight: bold;
 }
 </style>

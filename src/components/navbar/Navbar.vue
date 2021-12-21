@@ -14,7 +14,8 @@
             <router-link to="/my-work">My Work</router-link>
           </li>
           <li>
-            <router-link to="/about">About</router-link>
+<!--            <router-link to="/about">About</router-link>-->
+            <a href="#about">About</a>
           </li>
           <li>
             <a href="#">Contact</a>
@@ -22,9 +23,7 @@
         </ul>
       </div>
 
-
     </div>
-    <div class="line"></div>
 
   </div>
 </template>
@@ -46,32 +45,22 @@ export default {
   position: relative;
 }
 
-.bar-background {
-  position: absolute;
-  top: 1rem;
-  right: 0;
-  padding: 0 2rem;
-  z-index: -1;
-  height: .6rem;
-  width: 100%;
 
-}
 
 .name {
   text-transform: uppercase;
-  align-self: center;
+  align-self: flex-end;
   margin: 0 4rem;
-  font-size: 2.6rem;
-  color: #2c3e50;
+  font-size: 2rem;
 
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #216477;
     text-decoration: none;
 
     &.router-link-exact-active {
-      color: black;
+      color: #216477;
       text-decoration: none;
     }
   }
@@ -90,7 +79,7 @@ export default {
       margin: 0 1rem;
 
       a {
-        color: #2c3e50;
+        color: #216477;
         font-size: 2rem;
         text-decoration: none;
 
@@ -99,14 +88,4 @@ export default {
   }
 }
 
-.line {
-
-  display: block;
-  //background-image: url("../../assets/images/SVG/Asset 5.svg");
-  //background-repeat: no-repeat;
-  //background-size: cover;
-  height: 1rem;
-  width: 100%;
-  border-bottom: .2rem solid black;
-}
 </style>
