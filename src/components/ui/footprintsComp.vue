@@ -16,4 +16,32 @@ export default {
 
 <style scoped>
 
+.footprint-container {
+  width: 100%;
+
+}
+
+.footprints {
+  background-image: url("../../assets/images/SVG/footprints.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 50%;
+  height: 5rem;
+  width: 5rem;
+  margin-bottom: 3rem;
+}
+
+.fp_1 {
+  transform: translateX(35vw);
+}
+
+.fp_2 {
+  transform: translateX(24vw);
+}
+
+.fp_3 {
+  transition: .3s ease;
+  transform: translateX(12vw);
+
+}
 </style>

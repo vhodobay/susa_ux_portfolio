@@ -1,4 +1,6 @@
 <template>
+  <cranes-comp :wide-screen="true"></cranes-comp>
+
   <section class="container" id="about">
     <div class="yellow-container">
       <div class="yellow-liner"></div>
@@ -17,9 +19,6 @@
         <p>{{ text3 }}</p>
       </div>
 
-      <div class="graphics">
-        <cranes-comp :wide-screen="true"></cranes-comp>
-      </div>
     </div>
   </section>
 
@@ -67,6 +66,8 @@ export default {
   position: relative;
   display: grid;
   grid-template-columns: 25% auto 35%;
+  min-height: 75vh;
+
 
   p {
     font-size: 1.8rem;

@@ -1,5 +1,8 @@
 <template>
+  <cranes-comp :move-the-bird="false" :wide-screen="wideScreen"></cranes-comp>
+
   <div class="container">
+
     <div class="text-box">
 
       <div class="text-image">
@@ -10,9 +13,6 @@
       </div>
     </div>
   </div>
-
-  <cranes-comp :move-the-bird="false" :wide-screen="wideScreen"></cranes-comp>
-
   <div class="quote-cont">
     <div class="yellow-liner"></div>
     <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
@@ -62,8 +62,6 @@ export default {
         query: getIntroductionText,
         variables: {id: "fe260315-4b54-4230-b4c3-cc46312d2630"}
       })
-
-
       this.introText = introTexts.data.getIntroductionText.text
       this.introQuote = introTexts.data.getIntroductionText.quote
       this.quoteAuthor = introTexts.data.getIntroductionText.author

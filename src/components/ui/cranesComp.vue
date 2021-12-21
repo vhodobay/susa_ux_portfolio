@@ -1,4 +1,5 @@
 <template>
+  <div class="container-birds">
   <div v-if="wideScreen" class="daru-left">
     <img src="../../assets/images/SVG/petrolbluebird.svg" alt="crane">
   </div>
@@ -7,6 +8,7 @@
   </div>
   <div v-if="wideScreen" class="daru-right_2" :class="{opt_1: !moveTheBird, opt_2:moveTheBird}">
     <img src="../../assets/images/SVG/oceryellowbird.svg" alt="crane">
+  </div>
   </div>
 </template>
 
@@ -18,11 +20,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.container-birds{
+  position: relative;
+
+}
 
 .daru-left {
   width: 12rem;
   position: absolute;
-  top: 30vh;
+  top: 23vh;
   right: 24%;
   transform: rotate(30deg);
 
@@ -31,7 +37,7 @@ export default {
 .daru-right_1 {
   width: 22rem;
   position: absolute;
-  top: 3vh;
+  top: 4vh;
   right: 2rem;
   transform: scaleX(-1) rotate(20deg);
 }
@@ -39,7 +45,7 @@ export default {
 .daru-right_2 {
   width: 22rem;
   position: absolute;
-  top: 45vh;
+  top: 44vh;
   right: 2rem;
 }
 

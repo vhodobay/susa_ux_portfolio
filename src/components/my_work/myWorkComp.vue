@@ -1,4 +1,6 @@
 <template>
+  <cranes-comp :wide-screen="true" :move-the-bird="false"></cranes-comp>
+
   <div class="container" id="my-work">
     <div class="yellow-container">
       <div class="yellow-liner"></div>
@@ -12,21 +14,18 @@
       </div>
 
     </div>
-<!--    <div class="graphics">-->
-<!--      hey-->
-<!--      <cranes-comp :move-the-bird="false" :wide-screen="true"></cranes-comp>-->
-<!--    </div>-->
   </div>
 </template>
 
 <script>
 import ProjectUnitComp from "@/components/my_work/projectUnitComp";
-// import asset_1 from '../../assets/images/JPG/food-1.jpg'
+import CranesComp from "@/components/ui/cranesComp";
+
 
 
 export default {
   name: "myWorkComp",
-  components: {ProjectUnitComp, },
+  components: {CranesComp, ProjectUnitComp,},
   computed: {},
   data() {
     return {
@@ -34,6 +33,14 @@ export default {
         {
           title: "Daily Love Food",
           image: "food-1.jpg",
+        },
+        {
+          title: 'Plantea',
+          image: "food-2.jpg"
+        },
+        {
+          title: 'Super U',
+          image: "skill-3.jpg"
         }
       ]
     }
@@ -47,6 +54,7 @@ export default {
   display: flex;
   width: 100%;
   min-height: 40vh;
+
 }
 
 .content-area {
@@ -56,10 +64,11 @@ export default {
 .work-container {
 
 }
+
 .title {
 
 }
+
 .graphics {
-  grid-column: 3/4;
 }
 </style>

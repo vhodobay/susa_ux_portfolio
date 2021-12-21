@@ -2,10 +2,7 @@
   <div class="home">
     <navbar id="navbar"></navbar>
     <main class="main-container">
-      <!--      <div class="side-line-cont">-->
-      <!--        <div class="yellow-line"></div>-->
-      <!--        <div class="yellow-line"></div>-->
-      <!--      </div>-->
+
       <div class="content-section">
 
         <hero-comp></hero-comp>
@@ -13,6 +10,7 @@
         <footprints-comp></footprints-comp>
 
         <my-work-comp></my-work-comp>
+        <footprints-comp></footprints-comp>
 
         <about-comp></about-comp>
         <footprints-comp></footprints-comp>
