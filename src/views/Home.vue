@@ -2,7 +2,7 @@
   <div class="home"
        :class="[{'bg-hero-in-view' : heroInView}, {'bg-my-work-in-view': myWorkInView}, {'bg-about-in-view': aboutInView}]">
     <navbar id="navbar" @scroll-to-about="scrollTo('about-comp')" @scroll-to-top="scrollToTop"
-            @scroll-to-work="scrollTo('my-work-comp')"></navbar>
+            @scroll-to-work="scrollTo('my-work-comp')" :class="{'scroll' : isUserScrolling}"></navbar>
     <bottom-blur></bottom-blur>
     <div class="blur-effect"></div>
     <main class="main-container">
@@ -45,6 +45,7 @@ import SetBoard from "@/components/about/setBoard";
 import FootprintsComp from "@/components/ui/footprintsComp";
 import MyWorkComp from "@/components/my_work/myWorkComp";
 import BottomBlur from "@/components/ui/bottomBlur";
+// import debounce from 'lodash.debounce'
 
 
 export default {
@@ -60,6 +61,9 @@ export default {
   },
   data() {
     return {
+      currentScrollY: 0,
+      handleDebounceScroll: null,
+      isUserScrolling: false,
       intersectionObserver: null,
       heroInView: false,
       myWorkInView: false,
@@ -108,9 +112,21 @@ export default {
           behavior: 'smooth',
         })
       }, 200)
+    },
+    handleScroll() {
+      this.isUserScrolling = (this.currentScrollY < window.scrollY)
+      setTimeout(() => {
+        this.currentScrollY = window.scrollY
+      }, 100)
+      console.log('scrolled', this.isUserScrolling, this.currentScrollY, window.scrollY)
     }
   },
   mounted() {
+    this.currentScrollY = window.scrollY
+
+    // this.handleDebounceScroll = debounce(this.handleScroll, 200)
+    // window.addEventListener('scroll', this.handleDebounceScroll)
+
     this.intersectionObserver = new IntersectionObserver(this.onElementIntersects, {
       rootMargin: '0px',
       threshold: .5
@@ -125,6 +141,15 @@ export default {
       return window.innerWidth >= 500;
     }
   },
+  watch: {
+    isUserScrolling() {
+      if (this.isUserScrolling === true) {
+        setTimeout(() => {
+        this.isUserScrolling=false
+        }, 5000)
+      }
+    }
+  }
 
 }
 </script>
@@ -139,6 +164,9 @@ export default {
   top: 0;
   left: 0;
   z-index: 3;
+  transition: all .3s linear;
+  background: rgba(252, 252, 252, .4);
+
 }
 
 .board-container {
@@ -151,4 +179,8 @@ footer {
   height: 3rem;
 }
 
+.scroll {
+  opacity: .1;
+  transition: all .3s linear;
+}
 </style>

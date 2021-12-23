@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" @scroll="scrolled">
+    <div class="container" >
 
       <div class="name">
 
@@ -31,11 +31,6 @@
 export default {
   name: "Navbar",
   emits: ["scrollToTop", "scrollToWork", 'scrollToAbout'],
-  methods:{
-    scrolled(){
-      console.log('scrolled')
-    }
-  }
 }
 </script>
 
@@ -48,10 +43,6 @@ export default {
   justify-content: space-between;
   text-decoration: none;
   position: relative;
-
-}
-.scroll{
-  background: rgba(252, 252, 252, .9);
 
 }
 
