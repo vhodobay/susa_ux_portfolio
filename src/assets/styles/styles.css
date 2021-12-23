@@ -56,7 +56,7 @@ body {
 }
 
 .bg-about-in-view {
-  background: radial-gradient(ellipse at top, transparent 60%, #f3f3f4);
+  background: radial-gradient(ellipse at top, white 60%, #f3f3f4);
   transition: background 2s linear;
 }
 
