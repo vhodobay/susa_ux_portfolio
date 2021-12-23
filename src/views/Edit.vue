@@ -20,17 +20,13 @@
       </div>
       <button v-on:click="createIntroText">Save</button>
       <br>
-      <!--      <div>-->
-      <!--        <h2>About Section</h2>-->
-      <!--        <textarea id="text1" name="text1" placeholder="text1" rows="3" cols="44" v-model="text1"></textarea>-->
-      <!--        <textarea id="text2" name="text2" placeholder="text2" rows="3" cols="44" v-model="text2"></textarea>-->
-      <!--        <textarea id="text3" name="text3" placeholder="text3" rows="3" cols="44" v-model="text3"></textarea>-->
+      <div>
 
-      <!--        <br>-->
-      <!--        <input type="text" placeholder="title" v-model="title">-->
-      <!--        <input type="text" placeholder="newSkill" v-model="newSkill">-->
-      <!--      </div>-->
-      <!--      <button @click="createNewSkillData">Submit</button>-->
+
+        <input type="text" placeholder="title" v-model="name">
+        <input type="text" placeholder="newSkill" v-model="newSkill">
+      </div>
+      <button @click="createSkillSet">Submit</button>
 
     </div>
     <amplify-sign-out></amplify-sign-out>
@@ -39,8 +35,8 @@
 
 <script>
 import {API} from 'aws-amplify'
-import {updateIntroductionText, createAbout} from '@/graphql/mutations'
-import {getIntroductionText} from '@/graphql/queries'
+import {createSkill, updateIntroductionText} from '@/graphql/mutations'
+import {getIntroductionText, getSkillSet} from '@/graphql/queries'
 import Navbar from "@/components/navbar/Navbar";
 
 
@@ -55,10 +51,11 @@ export default {
       text1: "",
       text2: "",
       text3: "",
-      title: "",
+      name: "",
       newSkill: "",
       textLengthLimit: 400,
       quoteTextLimit: 150,
+      skillSet_1: null
     }
   },
   computed: {
@@ -81,7 +78,6 @@ export default {
       console.log(introTexts)
     },
     async createIntroText() {
-
       const {text, author, quote} = this
       if (!text || text.length > this.textLengthLimit) return
       if (!author) return
@@ -99,18 +95,26 @@ export default {
       this.text = ""
       this.author = ""
       this.quote = ""
-
     },
-    async createNewSkillData() {
-      const {text1, text2, text3} = this
+    async createSkillSet() {
+      await this.getSkillSet()
+      const skills = {
+        skillText: "Google UXDesign Professional Certificate"
+      }
 
-      const data = {text1, text2, text3}
       await API.graphql({
-        query: createAbout,
-        variables: {input: data}
+        query: createSkill,
+        variables: {input: skills, skills:this.skillSet_1}
       })
-      console.log(data)
+      console.log('ready')
     },
+    async getSkillSet(){
+      this.skillSet_1=await API.graphql({
+        query: getSkillSet,
+        variables: {id: "33ac2e16-5dc0-4ceb-9452-4de437edc115"}
+      })
+
+    }
   },
   created() {
     this.getIntroText()

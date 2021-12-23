@@ -1,5 +1,5 @@
 <template>
-  <cranes-comp :wide-screen="true"></cranes-comp>
+  <cranes-comp :wide-screen="wideScreen" :move-the-bird="inView"></cranes-comp>
 
   <section class="container" id="about">
     <div class="yellow-container">
@@ -9,7 +9,7 @@
 
       <div class="image">
         <div class="portrait">
-          <img src="@/assets/images/susaport2.jpg" alt="susa portrait">
+          <img src="@/assets/images/JPG/susuport.jpg" alt="susa portrait">
         </div>
       </div>
 
@@ -26,13 +26,12 @@
 
 <script>
 
-import {API} from "aws-amplify";
-import {listAbouts} from "@/graphql/queries";
 import CranesComp from "@/components/ui/cranesComp";
 
 
 export default {
   name: "aboutComp",
+  props:["inView", 'wideScreen'],
   data() {
     return {
 
@@ -42,17 +41,6 @@ export default {
     }
   },
   components: {CranesComp},
-  methods: {
-    async getAbout() {
-      const text = await API.graphql({
-        query: listAbouts
-      })
-      console.log(text)
-    }
-  },
-  created() {
-    this.getAbout()
-  }
 }
 </script>
 
@@ -78,11 +66,13 @@ export default {
 .image {
   grid-column: 1/2;
   padding: 2rem;
+
 }
 
 .portrait {
   img {
     max-width: 90%;
+
   }
 }
 

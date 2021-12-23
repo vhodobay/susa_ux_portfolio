@@ -29,7 +29,7 @@ export default {
   width: 12rem;
   position: absolute;
   top: 23vh;
-  right: 24%;
+  right: 20%;
   transform: rotate(30deg);
 
 }
@@ -55,7 +55,7 @@ export default {
 
 .opt_2 {
   transform: scaleX(-1) rotate(40deg);
-  transition: all 1s;
+  transition: all 1s ease-in-out 3s;
 
 }
 

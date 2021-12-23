@@ -1,13 +1,11 @@
 <template>
-  <cranes-comp :wide-screen="true" :move-the-bird="false"></cranes-comp>
+  <cranes-comp :wide-screen="wideScreen" :move-the-bird="inView"></cranes-comp>
 
   <div class="container" id="my-work">
     <div class="yellow-container">
       <div class="yellow-liner"></div>
     </div>
     <div class="content-area">
-
-
       <div v-for="(asset,idx) in assets" class="work-container" :key="idx">
         <project-unit-comp :asset-set="asset"></project-unit-comp>
 
@@ -20,29 +18,18 @@
 <script>
 import ProjectUnitComp from "@/components/my_work/projectUnitComp";
 import CranesComp from "@/components/ui/cranesComp";
-
+import {assets} from "@/data/data";
 
 
 export default {
   name: "myWorkComp",
-  components: {CranesComp, ProjectUnitComp,},
+  components: {CranesComp, ProjectUnitComp},
+  props: ['inView', "wideScreen"],
   computed: {},
   data() {
     return {
-      assets: [
-        {
-          title: "Daily Love Food",
-          image: "food-1.jpg",
-        },
-        {
-          title: 'Plantea',
-          image: "food-2.jpg"
-        },
-        {
-          title: 'Super U',
-          image: "skill-3.jpg"
-        }
-      ]
+      assets: assets,
+      move: null
     }
   },
 }

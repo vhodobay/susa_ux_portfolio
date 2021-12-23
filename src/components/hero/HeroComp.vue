@@ -1,12 +1,12 @@
 <template>
-  <cranes-comp :move-the-bird="false" :wide-screen="wideScreen"></cranes-comp>
+  <cranes-comp :move-the-bird="inView" :wide-screen="wideScreen"></cranes-comp>
 
   <div class="container">
 
     <div class="text-box">
 
       <div class="text-image">
-        <img src="../../assets/images/JPG/susaportrait-80.jpg" alt="susa image">
+        <img src="../../assets/images/JPG/susaport50.jpg" alt="susa image">
       </div>
       <div class="text-text">
         <p>{{ introText }}</p>
@@ -18,12 +18,6 @@
     <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
 
   </div>
-
-
-
-
-
-  <div id="hero-bottom"></div>
 
 
 </template>
@@ -38,25 +32,15 @@ import CranesComp from "@/components/ui/cranesComp";
 export default {
   name: "HeroComp",
   components: {CranesComp, TheQuote},
+  props:["wideScreen", "inView"],
   data() {
     return {
-
       introText: "",
       introQuote: "",
       quoteAuthor: "",
-      bottomInView: false,
-      intersectionObserver: null
     }
   },
   methods: {
-    onElementIntersects(entries) {
-      if (entries[0].isIntersecting) {
-        setTimeout(() => {
-          this.bottomInView = true
-
-        }, 3000)
-      }
-    },
     async getIntroText() {
       const introTexts = await API.graphql({
         query: getIntroductionText,
@@ -69,20 +53,7 @@ export default {
   },
   mounted() {
     this.getIntroText()
-    this.intersectionObserver = new IntersectionObserver(this.onElementIntersects, {
-      rootMargin: '0px',
-      threshold: 1.0
-    })
-    this.intersectionObserver.observe(document.querySelector('#hero-bottom'))
   },
-  beforeUnmount() {
-    this.intersectionObserver.unobserve(document.querySelector('#hero-bottom'))
-  },
-  computed: {
-    wideScreen() {
-      return window.innerWidth >= 500;
-    }
-  }
 }
 </script>
 

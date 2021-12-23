@@ -1,24 +1,23 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container" @scroll="scrolled">
 
       <div class="name">
 
-        <router-link to="/">Susa Horváth</router-link>
+        <span @click="$emit('scrollToTop')"><router-link to="/">Susa Horvath</router-link></span>
 
       </div>
 
       <div class="menu-items">
         <ul>
-          <li>
-            <router-link to="/my-work">My Work</router-link>
+          <li @click="$emit('scrollToWork')">
+            My Work
+          </li>
+          <li @click="$emit('scrollToAbout')">
+            About
           </li>
           <li>
-<!--            <router-link to="/about">About</router-link>-->
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
+            <a href="mailto:susainthekitchen@gmail.com">Contact</a>
           </li>
         </ul>
       </div>
@@ -30,7 +29,13 @@
 
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  emits: ["scrollToTop", "scrollToWork", 'scrollToAbout'],
+  methods:{
+    scrolled(){
+      console.log('scrolled')
+    }
+  }
 }
 </script>
 
@@ -43,26 +48,31 @@ export default {
   justify-content: space-between;
   text-decoration: none;
   position: relative;
+
 }
+.scroll{
+  background: rgba(252, 252, 252, .9);
 
-
+}
 
 .name {
   text-transform: uppercase;
   align-self: flex-end;
   margin: 0 4rem;
   font-size: 2rem;
-
+  cursor: pointer;
+  color: #216477;
+  transition: all .3s linear;
 
   a {
-    font-weight: bold;
     color: #216477;
+    font-size: 2rem;
     text-decoration: none;
+  }
 
-    &.router-link-exact-active {
-      color: #216477;
-      text-decoration: none;
-    }
+  &:hover {
+    transform: scale(1.04);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -70,19 +80,23 @@ export default {
   display: inline;
   text-transform: uppercase;
 
+
   ul {
     list-style: none;
-    margin: 4rem 5rem 0 0;
+    margin: 1rem 5rem 0 0;
 
     li {
       display: inline;
       margin: 0 1rem;
+      color: #216477;
+      font-size: 2rem;
+      text-decoration: none;
+      cursor: pointer;
 
       a {
         color: #216477;
         font-size: 2rem;
         text-decoration: none;
-
       }
     }
   }

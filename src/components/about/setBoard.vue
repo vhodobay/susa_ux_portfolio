@@ -50,6 +50,8 @@ export default {
 
   h2 {
     line-height: .1rem;
+    text-shadow: .3px .3px 3px rgba(0, 0, 0, 0.2);
+
   }
 }
 

@@ -3,6 +3,11 @@
   --color-petrol-blue: #216477;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .main-container {
   position: relative;
 }
@@ -23,19 +28,36 @@
 .yellow-line {
   background-color: var(--color-yellow);
   height: 3vh;
+  transition: all 0.2s ease-in-out 0.2s;
 }
 
 .content-section {
-  margin: 7rem 3rem 0 3rem;
+  padding: 5rem 3rem 0 3rem;
+  transition: background 2s linear;
 }
 
 .yellow-liner {
   position: relative;
   right: 2.4rem;
   background-color: var(--color-yellow);
-  height: 80%;
+  height: 100%;
   width: 1rem;
   margin: 1rem 1rem 1rem 5rem;
+}
+
+.bg-hero-in-view {
+  background: radial-gradient(ellipse at top, whitesmoke, white);
+  transition: background 2s linear;
+}
+
+.bg-my-work-in-view {
+  background: radial-gradient(ellipse at top, white 60%, #f3f3e6);
+  transition: background 2s linear;
+}
+
+.bg-about-in-view {
+  background: radial-gradient(ellipse at top, transparent 60%, #f3f3f4);
+  transition: background 2s linear;
 }
 
 /*# sourceMappingURL=styles.css.map */

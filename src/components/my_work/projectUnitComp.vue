@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="image">
-      <img :src="imgSrc" alt="project picture">
+      <img :src="imgSrc" alt="project picture" @click="goToUrl">
     </div>
-    <div class="title">
-      <h2>{{ assetSet.title }} </h2>
+    <div class="title" v-on:click="goToUrl">
+      <h2>{{ assetSet.title }}</h2>
     </div>
     <span class="yellow"></span>
 
@@ -18,7 +18,14 @@ export default {
   computed: {
     imgSrc() {
       return require(`@/assets/images/JPG/${this.assetSet.image}`)
-
+    },
+    url() {
+      return "/work" + this.assetSet.url
+    }
+  },
+  methods: {
+    goToUrl() {
+      this.$router.push(this.url)
     }
   }
 }
@@ -28,6 +35,12 @@ export default {
 .container {
   display: grid;
   position: relative;
+
+  &:hover > span {
+    width: 1.5rem;
+    transform: translateX(.5rem);
+
+  }
 }
 
 .image {
@@ -36,7 +49,7 @@ export default {
   img {
     max-width: 100%;
     height: auto;
-
+    cursor: pointer;
     object-fit: cover;
   }
 }
@@ -50,22 +63,29 @@ export default {
   text-align: start;
   padding: 0 3rem;
   background-color: var(--color-petrol-blue);
-  color: white;
   width: 30rem;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+
 
   h2 {
     font-size: 2rem;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+
   }
+
 }
 
 .yellow {
   position: absolute;
-
   height: 5.5rem;
   background-color: var(--color-yellow);
   width: 1rem;
   right: -5rem;
   bottom: 4rem;
+  transition: all .3s ease;
+
 
 }
 </style>

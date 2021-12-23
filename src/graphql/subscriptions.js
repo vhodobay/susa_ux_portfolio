@@ -1,6 +1,237 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBlog = /* GraphQL */ `
+  subscription OnCreateBlog {
+    onCreateBlog {
+      id
+      name
+      posts {
+        items {
+          id
+          title
+          blogID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBlog = /* GraphQL */ `
+  subscription OnUpdateBlog {
+    onUpdateBlog {
+      id
+      name
+      posts {
+        items {
+          id
+          title
+          blogID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBlog = /* GraphQL */ `
+  subscription OnDeleteBlog {
+    onDeleteBlog {
+      id
+      name
+      posts {
+        items {
+          id
+          title
+          blogID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePost = /* GraphQL */ `
+  subscription OnCreatePost {
+    onCreatePost {
+      id
+      title
+      blogID
+      blog {
+        id
+        name
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      comments {
+        items {
+          id
+          postID
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePost = /* GraphQL */ `
+  subscription OnUpdatePost {
+    onUpdatePost {
+      id
+      title
+      blogID
+      blog {
+        id
+        name
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      comments {
+        items {
+          id
+          postID
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePost = /* GraphQL */ `
+  subscription OnDeletePost {
+    onDeletePost {
+      id
+      title
+      blogID
+      blog {
+        id
+        name
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      comments {
+        items {
+          id
+          postID
+          content
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
+      id
+      postID
+      post {
+        id
+        title
+        blogID
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
+      id
+      postID
+      post {
+        id
+        title
+        blogID
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
+      id
+      postID
+      post {
+        id
+        title
+        blogID
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateIntroductionText = /* GraphQL */ `
   subscription OnCreateIntroductionText {
     onCreateIntroductionText {
@@ -10,7 +241,6 @@ export const onCreateIntroductionText = /* GraphQL */ `
       author
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -23,7 +253,6 @@ export const onUpdateIntroductionText = /* GraphQL */ `
       author
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -36,172 +265,6 @@ export const onDeleteIntroductionText = /* GraphQL */ `
       author
       createdAt
       updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateAbout = /* GraphQL */ `
-  subscription OnCreateAbout {
-    onCreateAbout {
-      id
-      text1
-      text2
-      text3
-      skillSections {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateAbout = /* GraphQL */ `
-  subscription OnUpdateAbout {
-    onUpdateAbout {
-      id
-      text1
-      text2
-      text3
-      skillSections {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteAbout = /* GraphQL */ `
-  subscription OnDeleteAbout {
-    onDeleteAbout {
-      id
-      text1
-      text2
-      text3
-      skillSections {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateSkillSection = /* GraphQL */ `
-  subscription OnCreateSkillSection {
-    onCreateSkillSection {
-      id
-      title
-      items {
-        items {
-          id
-          text
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateSkillSection = /* GraphQL */ `
-  subscription OnUpdateSkillSection {
-    onUpdateSkillSection {
-      id
-      title
-      items {
-        items {
-          id
-          text
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteSkillSection = /* GraphQL */ `
-  subscription OnDeleteSkillSection {
-    onDeleteSkillSection {
-      id
-      title
-      items {
-        items {
-          id
-          text
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateItem = /* GraphQL */ `
-  subscription OnCreateItem {
-    onCreateItem {
-      id
-      text
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateItem = /* GraphQL */ `
-  subscription OnUpdateItem {
-    onUpdateItem {
-      id
-      text
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteItem = /* GraphQL */ `
-  subscription OnDeleteItem {
-    onDeleteItem {
-      id
-      text
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
