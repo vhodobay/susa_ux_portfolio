@@ -1,37 +1,30 @@
 <template>
   <div>
-    <div class="container" >
-
+    <div class="container">
       <div class="name">
-
-        <span @click="$emit('scrollToTop')"><router-link to="/">Susa Horvath</router-link></span>
-
+        <span @click="$emit('scrollToTop')"
+          ><router-link to="/">Susa Horvath</router-link></span
+        >
       </div>
 
       <div class="menu-items">
         <ul>
-          <li @click="$emit('scrollToWork')">
-            My Work
-          </li>
-          <li @click="$emit('scrollToAbout')">
-            About
-          </li>
+          <li @click="$emit('scrollToWork')">My Work</li>
+          <li @click="$emit('scrollToAbout')">About</li>
           <li>
             <a href="mailto:susainthekitchen@gmail.com">Contact</a>
           </li>
         </ul>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
   name: "Navbar",
-  emits: ["scrollToTop", "scrollToWork", 'scrollToAbout'],
-}
+  emits: ["scrollToTop", "scrollToWork", "scrollToAbout"],
+};
 </script>
 
 <style scoped lang="scss">
@@ -43,7 +36,6 @@ export default {
   justify-content: space-between;
   text-decoration: none;
   position: relative;
-
 }
 
 .name {
@@ -53,7 +45,7 @@ export default {
   font-size: 2rem;
   cursor: pointer;
   color: #216477;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 
   a {
     color: #216477;
@@ -70,7 +62,6 @@ export default {
 .menu-items {
   display: inline;
   text-transform: uppercase;
-
 
   ul {
     list-style: none;
@@ -92,5 +83,4 @@ export default {
     }
   }
 }
-
 </style>

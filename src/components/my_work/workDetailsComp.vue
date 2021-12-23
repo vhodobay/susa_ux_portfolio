@@ -19,15 +19,14 @@
         <td>{{ dataSet.projectType }}</td>
       </tr>
     </table>
-
   </div>
 </template>
 
 <script>
 export default {
   name: "workDetailsComp",
-  props: ['dataSet']
-}
+  props: ["dataSet"],
+};
 </script>
 
 <style scoped lang="scss">
@@ -35,20 +34,18 @@ export default {
   position: relative;
   padding: 3rem;
 
-
   table {
     font-size: 2rem;
     font-weight: 900;
+    margin-top: 3rem;
 
     td {
       padding: 1.1rem;
       text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-
     }
   }
 
   .yellow-square {
-
     border: none;
     color: white;
   }
@@ -58,9 +55,12 @@ export default {
     position: absolute;
     background-color: var(--color-yellow);
     left: 0;
-    top: 0;
+    top: 1rem;
     height: 100%;
     z-index: -1;
+    @media only screen and (min-width: 1300px) {
+      top: 2rem;
+    }
   }
 }
 </style>

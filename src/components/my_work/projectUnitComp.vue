@@ -1,13 +1,12 @@
 <template>
   <div class="container">
     <div class="image">
-      <img :src="imgSrc" alt="project picture" @click="goToUrl">
+      <img :src="imgSrc" alt="project picture" @click="goToUrl" />
     </div>
     <div class="title" v-on:click="goToUrl">
       <h2>{{ assetSet.title }}</h2>
     </div>
     <span class="yellow"></span>
-
   </div>
 </template>
 
@@ -17,18 +16,18 @@ export default {
   props: ["assetSet"],
   computed: {
     imgSrc() {
-      return require(`@/assets/images/JPG/${this.assetSet.image}`)
+      return require(`@/assets/images/JPG/${this.assetSet.image}`);
     },
     url() {
-      return "/work" + this.assetSet.url
-    }
+      return "/work" + this.assetSet.url;
+    },
   },
   methods: {
     goToUrl() {
-      this.$router.push(this.url)
-    }
-  }
-}
+      this.$router.push(this.url);
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -38,8 +37,7 @@ export default {
 
   &:hover > span {
     width: 1.5rem;
-    transform: translateX(.5rem);
-
+    transform: translateX(0.5rem);
   }
 }
 
@@ -67,14 +65,18 @@ export default {
   cursor: pointer;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 
+  @media only screen and (min-width: 1300px) {
+    padding: 1rem 5rem;
+  }
 
   h2 {
     font-size: 2rem;
     color: white;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-
+    @media only screen and (min-width: 1300px) {
+      font-size: 2.6rem;
+    }
   }
-
 }
 
 .yellow {
@@ -84,8 +86,9 @@ export default {
   width: 1rem;
   right: -5rem;
   bottom: 4rem;
-  transition: all .3s ease;
-
-
+  transition: all 0.3s ease;
+    @media only screen and (min-width: 1300px) {
+      height: 9rem;
+    }
 }
 </style>
