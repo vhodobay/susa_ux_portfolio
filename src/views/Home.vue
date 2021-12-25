@@ -1,17 +1,17 @@
 <template>
   <div
-    class="home"
-    :class="[
+      class="home"
+      :class="[
       { 'bg-hero-in-view': heroInView },
       { 'bg-my-work-in-view': myWorkInView },
       { 'bg-about-in-view': aboutInView },
     ]"
   >
     <navbar
-      id="navbar"
-      @scroll-to-about="scrollTo('about-comp')"
-      @scroll-to-top="scrollToTop"
-      @scroll-to-work="scrollTo('my-work-comp')"
+        id="navbar"
+        @scroll-to-about="scrollTo('about-comp')"
+        @scroll-to-top="scrollToTop"
+        @scroll-to-work="scrollTo('my-work-comp')"
     ></navbar>
     <bottom-blur></bottom-blur>
     <div class="blur-effect"></div>
@@ -19,8 +19,8 @@
       <div class="content-section">
         <section id="hero-comp">
           <hero-comp
-            :wide-screen="wideScreen"
-            :in-view="heroInView"
+              :wide-screen="wideScreen"
+              :in-view="heroInView"
           ></hero-comp>
         </section>
 
@@ -28,25 +28,29 @@
 
         <section id="my-work-comp">
           <my-work-comp
-            :in-view="myWorkInView"
-            :wide-screen="wideScreen"
+              :in-view="myWorkInView"
+              :wide-screen="wideScreen"
           ></my-work-comp>
         </section>
         <footprints-comp></footprints-comp>
 
         <section id="about-comp">
           <about-comp
-            :wide-screen="wideScreen"
-            :in-view="aboutInView"
+              :wide-screen="wideScreen"
+              :in-view="aboutInView"
           ></about-comp>
         </section>
 
         <footprints-comp></footprints-comp>
         <section class="board-container" id="skills">
-          <set-board
-            v-for="(skillSet, idx) in skillSections"
-            :key="idx"
-            :trait="skillSet"
+          <set-board v-if="education"
+              :traits="education" title="Education"
+          ></set-board>
+          <set-board v-if="skills"
+              :traits="skills" title="Skills"
+          ></set-board>
+          <set-board v-if="tools"
+              :traits="tools" title="Tools"
           ></set-board>
         </section>
       </div>
@@ -65,7 +69,13 @@ import SetBoard from "@/components/about/setBoard";
 import FootprintsComp from "@/components/ui/footprintsComp";
 import MyWorkComp from "@/components/my_work/myWorkComp";
 import BottomBlur from "@/components/ui/bottomBlur";
+import sanity from '../client'
 // import debounce from "lodash.debounce";
+
+const eduQuery = `*[_type == "education"] {skill}`
+const skillQuery = `*[_type == "skill"] {skill}`
+const toolQuery = `*[_type == "tools"]{skill}`
+
 
 export default {
   name: "Home",
@@ -88,6 +98,9 @@ export default {
       myWorkInView: false,
       aboutInView: false,
       skillsInView: false,
+      education: [],
+      skills:[],
+      tools:[],
       skillSections: [
         {
           title: "Education",
@@ -111,6 +124,16 @@ export default {
     };
   },
   methods: {
+    async fetchEducation() {
+      try {
+        this.education = await sanity.fetch(eduQuery)
+        this.skills = await sanity.fetch(skillQuery)
+        this.tools = await sanity.fetch(toolQuery)
+
+      } catch (e) {
+        console.log(e)
+      }
+    },
     onElementIntersects(entries) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
@@ -148,17 +171,18 @@ export default {
     },
   },
   mounted() {
+    this.fetchEducation()
     this.currentScrollY = window.scrollY;
 
     // this.handleDebounceScroll = debounce(this.handleScroll, 200);
     // window.addEventListener("scroll", this.handleDebounceScroll);
 
     this.intersectionObserver = new IntersectionObserver(
-      this.onElementIntersects,
-      {
-        rootMargin: "0px",
-        threshold: 0.5,
-      }
+        this.onElementIntersects,
+        {
+          rootMargin: "0px",
+          threshold: 0.5,
+        }
     );
     this.intersectionObserver.observe(document.querySelector("#hero-comp"));
     this.intersectionObserver.observe(document.querySelector("#my-work-comp"));
@@ -173,10 +197,10 @@ export default {
   watch: {
     isUserScrolling() {
       console.log(
-        "scrolled",
-        this.isUserScrolling,
-        this.currentScrollY,
-        window.scrollY
+          "scrolled",
+          this.isUserScrolling,
+          this.currentScrollY,
+          window.scrollY
       );
     },
   },
@@ -195,6 +219,7 @@ export default {
   z-index: 3;
   transition: all 0.3s linear;
   background: rgba(252, 252, 252, 0.4);
+
   &:hover {
     background: rgba(252, 252, 252, 1);
   }

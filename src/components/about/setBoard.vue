@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="title">
-      <h2>{{ trait.title }}</h2>
+      <h2>{{ title }}</h2>
     </div>
     <ul>
-      <li v-for="(edu,idx) in trait.items" :key="idx">{{ edu }}</li>
+      <li v-for="(skill,idx) in traits" :key="idx">{{ skill.skill }}</li>
     </ul>
 
 
@@ -14,7 +14,10 @@
 <script>
 export default {
   name: "setBoard",
-  props: ["trait"],
+  props: ["traits", "title"],
+  mounted() {
+    console.log(this.traits)
+  }
 }
 </script>
 

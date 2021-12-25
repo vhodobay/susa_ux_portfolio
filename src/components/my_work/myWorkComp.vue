@@ -24,7 +24,7 @@ import imageUrlBuilder from "@sanity/image-url";
 
 
 const imageBuilder = imageUrlBuilder(sanity)
-const assetQuery = `*[_type == "workProject"] {_id,slug, title, "image": mainImage{asset->{_id,url}}}`
+const assetQuery = `*[_type == "workProject"] | order(title) {_id,slug, title, "image": mainImage{asset->{_id,url}}}`
 
 export default {
   name: "myWorkComp",
