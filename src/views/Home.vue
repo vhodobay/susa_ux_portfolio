@@ -12,7 +12,9 @@
         @scroll-to-about="scrollTo('about-comp')"
         @scroll-to-top="scrollToTop"
         @scroll-to-work="scrollTo('my-work-comp')"
+        @contact-me="contactMeStart"
     ></navbar>
+    <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>
     <bottom-blur></bottom-blur>
     <div class="blur-effect"></div>
     <main class="main-container">
@@ -69,6 +71,7 @@ import FootprintsComp from "@/components/ui/footprintsComp";
 import MyWorkComp from "@/components/my_work/myWorkComp";
 import BottomBlur from "@/components/ui/bottomBlur";
 import sanity from '../client'
+import ContactMe from "@/components/contactMe";
 // import debounce from "lodash.debounce";
 
 const eduQuery = `*[_type == "education"] {skill}`
@@ -79,6 +82,7 @@ const toolQuery = `*[_type == "tools"]{skill}`
 export default {
   name: "Home",
   components: {
+    ContactMe,
     BottomBlur,
     MyWorkComp,
     FootprintsComp,
@@ -89,6 +93,7 @@ export default {
   },
   data() {
     return {
+      contactMe:false,
       currentScrollY: 0,
       handleDebounceScroll: null,
       isUserScrolling: false,
@@ -123,6 +128,10 @@ export default {
     };
   },
   methods: {
+    contactMeStart(){
+      this.contactMe=!this.contactMe
+
+    },
     async fetchEducation() {
       try {
         this.education = await sanity.fetch(eduQuery)

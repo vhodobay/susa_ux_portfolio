@@ -11,8 +11,9 @@
         <ul>
           <li @click="$emit('scrollToWork')">My Work</li>
           <li @click="$emit('scrollToAbout')">About</li>
-          <li>
-            <a href="mailto:susainthekitchen@gmail.com">Contact</a>
+          <li @click="$emit('contactMe')">
+            Contact
+<!--            <a href="mailto:susainthekitchen@gmail.com">Contact</a>-->
           </li>
         </ul>
       </div>
@@ -23,7 +24,7 @@
 <script>
 export default {
   name: "Navbar",
-  emits: ["scrollToTop", "scrollToWork", "scrollToAbout"],
+  emits: ["scrollToTop", "scrollToWork", "scrollToAbout", "contactMe"],
 };
 </script>
 

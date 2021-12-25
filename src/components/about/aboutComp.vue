@@ -69,11 +69,15 @@ this.fetchIntroText()
   grid-template-columns: 25% auto 35%;
   min-height: 75vh;
   margin-top: 3rem;
+  @media only screen and(min-width: 1300px) {
+  grid-template-columns: 25% auto 40%;
+  }
   p {
     font-size: 1.8rem;
     font-weight: 500;
     @media only screen and (min-width: 1300px) {
-      font-size: 2.1rem;
+      font-size: 2.5rem;
+      padding: 0 3rem;
     }
   }
 }

@@ -35,6 +35,11 @@ body {
   padding: 5rem 3rem 0 3rem;
   transition: background 2s linear;
 }
+@media only screen and (min-width: 1300px) {
+  .content-section {
+    padding: 5rem;
+  }
+}
 
 .yellow-liner {
   position: relative;
