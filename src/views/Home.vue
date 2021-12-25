@@ -35,22 +35,21 @@
         <footprints-comp></footprints-comp>
 
         <section id="about-comp">
-          <about-comp
-              :wide-screen="wideScreen"
-              :in-view="aboutInView"
+          <about-comp :wide-screen="wideScreen"
+                      :in-view="aboutInView"
           ></about-comp>
         </section>
 
         <footprints-comp></footprints-comp>
         <section class="board-container" id="skills">
           <set-board v-if="education"
-              :traits="education" title="Education"
+                     :traits="education" title="Education"
           ></set-board>
           <set-board v-if="skills"
-              :traits="skills" title="Skills"
+                     :traits="skills" title="Skills"
           ></set-board>
           <set-board v-if="tools"
-              :traits="tools" title="Tools"
+                     :traits="tools" title="Tools"
           ></set-board>
         </section>
       </div>
@@ -99,8 +98,8 @@ export default {
       aboutInView: false,
       skillsInView: false,
       education: [],
-      skills:[],
-      tools:[],
+      skills: [],
+      tools: [],
       skillSections: [
         {
           title: "Education",
@@ -158,7 +157,7 @@ export default {
       setTimeout(() => {
         let element = document.getElementById(id);
         element.scrollIntoView({
-          behavior: "smooth",
+          behavior: "smooth", block: "start"
         });
       }, 200);
     },

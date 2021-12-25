@@ -70,7 +70,7 @@ this.fetchIntroText()
   display: grid;
   grid-template-columns: 25% auto 35%;
   min-height: 75vh;
-
+  margin-top: 3rem;
   p {
     font-size: 1.8rem;
     font-weight: 500;
