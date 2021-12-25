@@ -34,9 +34,8 @@
 </template>
 
 <script>
-import {API} from 'aws-amplify'
-import {createSkill, updateIntroductionText} from '@/graphql/mutations'
-import {getIntroductionText, getSkillSet} from '@/graphql/queries'
+
+
 import Navbar from "@/components/navbar/Navbar";
 
 
@@ -67,57 +66,10 @@ export default {
     }
   },
   methods: {
-    async getIntroText() {
-      const introTexts = await API.graphql({
-        query: getIntroductionText,
-        variables: {id: "fe260315-4b54-4230-b4c3-cc46312d2630"}
-      })
-      this.text = introTexts.data.getIntroductionText.text
-      this.quote = introTexts.data.getIntroductionText.quote
-      this.author = introTexts.data.getIntroductionText.author
-      console.log(introTexts)
-    },
-    async createIntroText() {
-      const {text, author, quote} = this
-      if (!text || text.length > this.textLengthLimit) return
-      if (!author) return
-      if (!quote || quote.length > this.quoteTextLimit) return
-      const introStuff = {
-        id: "fe260315-4b54-4230-b4c3-cc46312d2630",
-        text,
-        quote,
-        author,
-      }
-      await API.graphql({
-        query: updateIntroductionText,
-        variables: {input: introStuff},
-      });
-      this.text = ""
-      this.author = ""
-      this.quote = ""
-    },
-    async createSkillSet() {
-      await this.getSkillSet()
-      const skills = {
-        skillText: "Google UXDesign Professional Certificate"
-      }
 
-      await API.graphql({
-        query: createSkill,
-        variables: {input: skills, skills:this.skillSet_1}
-      })
-      console.log('ready')
-    },
-    async getSkillSet(){
-      this.skillSet_1=await API.graphql({
-        query: getSkillSet,
-        variables: {id: "33ac2e16-5dc0-4ceb-9452-4de437edc115"}
-      })
 
-    }
   },
   created() {
-    this.getIntroText()
   }
 }
 </script>

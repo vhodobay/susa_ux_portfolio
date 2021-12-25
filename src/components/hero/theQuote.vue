@@ -2,19 +2,43 @@
   <div class="quote-text">
     <blockquote>
       &quot;
-      {{ introQuote }}
+      {{ introQuote.text }}
       &quot;
     </blockquote>
     <cite>
-      &mdash; {{ quoteAuthor }} &mdash;
+      &mdash; {{ introQuote.author }} &mdash;
     </cite>
   </div>
 </template>
 
 <script>
+import sanity from '../../client'
+
+
+const quoteQuery = `*[_type == "quote"] {text, author}`
+
 export default {
   name: "theQuote",
-  props: ["introQuote", "quoteAuthor"]
+
+  data() {
+    return {
+      introQuote: "",
+    }
+  },
+  methods: {
+    async fetchQuote() {
+      try {
+        const quoteData = await sanity.fetch(quoteQuery)
+        this.introQuote = quoteData[0]
+
+      } catch (e) {
+        console.log(e)
+      }
+    },
+  },
+  mounted() {
+    this.fetchQuote()
+  }
 }
 </script>
 

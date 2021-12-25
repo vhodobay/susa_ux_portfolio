@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="image">
-      <img :src="imgSrc" alt="project picture" @click="goToUrl" />
+      <img :src="assetSet.image.asset.url" alt="project picture" @click="goToUrl" />
     </div>
     <div class="title" v-on:click="goToUrl">
       <h2>{{ assetSet.title }}</h2>
@@ -15,18 +15,15 @@ export default {
   name: "projectUnitComp",
   props: ["assetSet"],
   computed: {
-    imgSrc() {
-      return require(`@/assets/images/JPG/${this.assetSet.image}`);
-    },
-    url() {
-      return "/work" + this.assetSet.url;
-    },
   },
   methods: {
     goToUrl() {
-      this.$router.push(this.url);
+      this.$router.push('/work/' + this.assetSet.slug.current);
     },
   },
+  mounted() {
+
+  }
 };
 </script>
 

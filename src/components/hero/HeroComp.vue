@@ -6,53 +6,54 @@
     <div class="text-box">
 
       <div class="text-image">
-        <img src="../../assets/images/JPG/susaport50.jpg" alt="susa image">
+        <img v-if="introData.image" :src="imageUrlFor(introData.image)" alt="susa portrait">
       </div>
       <div class="text-text">
-        <p>{{ introText }}</p>
+        <p>{{ introData.body }}</p>
       </div>
     </div>
   </div>
   <div class="quote-cont">
     <div class="yellow-liner"></div>
-    <the-quote class="quote" :intro-quote="introQuote" :quote-author="quoteAuthor"></the-quote>
-
+    <the-quote class="quote" ></the-quote>
   </div>
-
-
 </template>
 
 <script>
 import TheQuote from "@/components/hero/theQuote";
-import {API} from "aws-amplify";
-import {getIntroductionText} from '@/graphql/queries'
 import CranesComp from "@/components/ui/cranesComp";
+import sanity from '../../client'
+import imageUrlBuilder from '@sanity/image-url'
 
+
+const imageBuilder = imageUrlBuilder(sanity)
+const introQuery = `*[_type == "introText"] {body, "image": mainImage {asset->{_id,url}}}`
 
 export default {
   name: "HeroComp",
   components: {CranesComp, TheQuote},
-  props:["wideScreen", "inView"],
+  props: ["wideScreen", "inView"],
   data() {
     return {
-      introText: "",
-      introQuote: "",
-      quoteAuthor: "",
+      introData: "",
     }
   },
   methods: {
-    async getIntroText() {
-      const introTexts = await API.graphql({
-        query: getIntroductionText,
-        variables: {id: "fe260315-4b54-4230-b4c3-cc46312d2630"}
-      })
-      this.introText = introTexts.data.getIntroductionText.text
-      this.introQuote = introTexts.data.getIntroductionText.quote
-      this.quoteAuthor = introTexts.data.getIntroductionText.author
+    async fetchIntroText() {
+      try {
+        const introData = await sanity.fetch(introQuery)
+        this.introData = introData[0]
+
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    imageUrlFor(source){
+      return imageBuilder.image(source)
     }
   },
   mounted() {
-    this.getIntroText()
+    this.fetchIntroText()
   },
 }
 </script>

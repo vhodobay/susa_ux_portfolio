@@ -6,7 +6,7 @@
       <div class="yellow-liner"></div>
     </div>
     <div class="content-area">
-      <div v-for="(asset,idx) in assets" class="work-container" :key="idx">
+      <div v-for="(asset) in assets" class="work-container" :key="asset._id">
         <project-unit-comp :asset-set="asset"></project-unit-comp>
 
       </div>
@@ -18,20 +18,39 @@
 <script>
 import ProjectUnitComp from "@/components/my_work/projectUnitComp";
 import CranesComp from "@/components/ui/cranesComp";
-import {assets} from "@/data/data";
 
+import sanity from '../../client'
+import imageUrlBuilder from "@sanity/image-url";
+
+
+const imageBuilder = imageUrlBuilder(sanity)
+const assetQuery = `*[_type == "workProject"] {_id,slug, title, "image": mainImage{asset->{_id,url}}}`
 
 export default {
   name: "myWorkComp",
   components: {CranesComp, ProjectUnitComp},
   props: ['inView', "wideScreen"],
   computed: {},
+  mounted() {
+    this.fetchAssetData()
+  },
   data() {
     return {
-      assets: assets,
+      assets: [],
       move: null
     }
   },
+  methods: {
+    imageUrlFor(source){
+      return imageBuilder.image(source)
+    },
+    async fetchAssetData(){
+      try {
+        this.assets = await sanity.fetch(assetQuery)
+      } catch (e) {
+        console.log(e)}
+    }
+  }
 }
 </script>
 

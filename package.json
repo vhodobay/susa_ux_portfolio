@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "@aws-amplify/ui-components": "^1.9.6",
+    "@sanity/client": "^2.23.2",
+    "@sanity/image-url": "^1.0.1",
     "aws-amplify": "^4.3.11",
     "core-js": "^3.6.5",
     "lodash.debounce": "^4.0.8",
+    "sanity-blocks-vue-component": "^1.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
@@ -45,7 +48,7 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not dead"
+    "last 2 versions"
+
   ]
 }
