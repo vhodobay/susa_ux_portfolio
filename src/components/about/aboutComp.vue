@@ -8,7 +8,7 @@
     <div class="about-container">
       <div class="image">
         <div class="portrait">
-          <img src="@/assets/images/JPG/susuport.jpg" alt="susa portrait"/>
+          <img v-if="aboutData" :src="imageUrlFor(aboutData.image)" alt="susa portrait"/>
         </div>
       </div>
 
@@ -28,7 +28,7 @@ import imageUrlBuilder from '@sanity/image-url'
 
 
 const imageBuilder = imageUrlBuilder(sanity)
-const aboutQuery = `*[_type == "aboutText"] {body1,body2,body3}`
+const aboutQuery = `*[_type == "aboutText"] {body1,body2,body3,"image": mainImage {asset->{_id,url}}}`
 
 
 export default {
@@ -38,8 +38,6 @@ export default {
       try {
         const aboutData = await sanity.fetch(aboutQuery)
         this.aboutData = aboutData[0]
-        console.log(this.aboutData)
-
       } catch (e) {
         console.log(e)
       }

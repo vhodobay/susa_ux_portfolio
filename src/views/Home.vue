@@ -24,7 +24,7 @@
           ></hero-comp>
         </section>
 
-        <footprints-comp :in-view="heroInView"></footprints-comp>
+        <footprints-comp ></footprints-comp>
 
         <section id="my-work-comp">
           <my-work-comp

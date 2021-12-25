@@ -19,7 +19,7 @@
 
     <div class="footprints" :class="{'fp_1-scroll': inView, 'fp_1': !inView}"></div>
     <div class="footprints" :class="{'fp_2-scroll': inView, 'fp_2': !inView}" key="1"></div>
-    <div class="footprints" :class="{'fp_3-scroll': inView, 'fp_3': !inView}" key="2"></div>
+    <div id="last-footprint" class="footprints" :class="{'fp_3-scroll': inView, 'fp_3': !inView}" key="2"></div>
 
   </div>
 </template>
@@ -27,9 +27,11 @@
 <script>
 export default {
   name: "footprintsComp",
-  props: ["inView"],
+
   data() {
     return {
+      intersectionObserver: null,
+      inView: false,
       interval: 150,
       seq_1: false,
       seq_2: false,
@@ -41,6 +43,16 @@ export default {
   },
   mounted() {
     this.seqStarter()
+    this.intersectionObserver = new IntersectionObserver(
+        this.onElementIntersects, {
+          rootMargin: '0px',
+          threshold: 0.9
+        }
+    );
+    this.intersectionObserver.observe(document.getElementById('last-footprint'))
+  },
+  beforeUnmount() {
+    this.intersectionObserver.unobserve(document.getElementById('last-footprint'))
   },
   watch: {
     seq_1() {
@@ -92,12 +104,20 @@ export default {
       }
     },
   },
-  methods:{
-    seqStarter(){
-      setTimeout(()=>{
-        this.seq_1=true
+  methods: {
+    onElementIntersects(entries) {
+      if (entries[0].isIntersecting) {
+        this.inView = true
+        setTimeout(() => {
+          this.inView = false
+        }, 4000)
+      }
+    },
+    seqStarter() {
+      setTimeout(() => {
+        this.seq_1 = true
 
-      },6000)
+      }, 6000)
     }
   }
 }
@@ -130,34 +150,34 @@ export default {
 
 .fp_1 {
   transform: translateX(35vw);
-  transition: all 1s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 .fp_1-scroll {
-  transform: translateX(35vw) scale(1.1);
-  transition: 1s ease-in-out;
+  transform: translateX(35vw) scale(1.3);
+  transition: .5s ease-in-out;
 }
 
 
 .fp_2 {
   transform: translateX(24vw);
-  transition: 1s ease-in-out 1s;
+  transition: .5s ease-in-out 1s;
 
 }
 
 .fp_2-scroll {
-  transform: translateX(24vw) scale(1.1);
-  transition: 1s ease-in-out 1s;
+  transform: translateX(24vw) scale(1.3);
+  transition: .5s ease-in-out 1s;
 }
 
 .fp_3 {
   transform: translateX(12vw);
-  transition: 1s ease-in-out 2s;
+  transition: .5s ease-in-out 2s;
 }
 
 .fp_3-scroll {
-  transform: translateX(12vw) scale(1.1);
-  transition: 1s ease-in-out 2s;
+  transform: translateX(12vw) scale(1.3);
+  transition: .5s ease-in-out 2s;
 }
 
 .go-bigger {

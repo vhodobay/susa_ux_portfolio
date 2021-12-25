@@ -16,7 +16,6 @@ export default {
   name: "setBoard",
   props: ["traits", "title"],
   mounted() {
-    console.log(this.traits)
   }
 }
 </script>
