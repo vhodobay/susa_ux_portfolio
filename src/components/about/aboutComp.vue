@@ -8,14 +8,14 @@
     <div class="about-container">
       <div class="image">
         <div class="portrait">
-          <img src="@/assets/images/JPG/susuport.jpg" alt="susa portrait" />
+          <img src="@/assets/images/JPG/susuport.jpg" alt="susa portrait"/>
         </div>
       </div>
 
       <div class="text-box">
-        <p>{{ text1 }}</p>
-        <p>{{ text2 }}</p>
-        <p>{{ text3 }}</p>
+  <p v-if="aboutData">{{aboutData.body1}}</p>
+  <p v-if="aboutData">{{aboutData.body2}}</p>
+  <p v-if="aboutData">{{aboutData.body3}}</p>
       </div>
     </div>
   </section>
@@ -23,21 +23,39 @@
 
 <script>
 import CranesComp from "@/components/ui/cranesComp";
+import sanity from '../../client'
+import imageUrlBuilder from '@sanity/image-url'
+
+
+const imageBuilder = imageUrlBuilder(sanity)
+const aboutQuery = `*[_type == "aboutText"] {body1,body2,body3}`
+
 
 export default {
   name: "aboutComp",
-  props: ["inView", "wideScreen"],
+  props: ["inView", "wideScreen"], methods: {
+    async fetchIntroText() {
+      try {
+        const aboutData = await sanity.fetch(aboutQuery)
+        this.aboutData = aboutData[0]
+        console.log(this.aboutData)
+
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    imageUrlFor(source) {
+      return imageBuilder.image(source)
+    }
+  },
   data() {
     return {
-      text1:
-        "After my daughter was born, I chose to become a professional chef leaving a communications leader role behind. So far it may sound like an ordinary story of a mom changing careers because of kids, but perhaps my journey is a bit more adventurous.",
-      text2:
-        "Up until my daughter’s first birthday I cooked in twenty two yoga camps with only a baby carrier and my brains with me, then I ran an apartment restaurant while working as a private chef for two families as well as an American actor, after which I worked as the chef of a Budapest based bistro. My favourite hashtag and personal philosophy is #foodislove. I love finding out how to make the most out of the most simple ingredients or show the world that you can create fantastic desserts out of cauliflower.",
-      text3:
-        "When my daughter turned nearly five, I felt it was time to look around over the border, so we settled down in Berlin to start over. I cooked at dinners of smaller and larger scale. I loved them all and yet I felt something was missing. Here continued my journey to find my path. I started my own little sustainable catering project Daily Love Food, and slowly started my doula carrier too. And now I'm learning to be a equity lover UX Designer to make the user experience of life more enjoyable",
-    };
+      aboutData:null};
   },
-  components: { CranesComp },
+  created() {
+this.fetchIntroText()
+  },
+  components: {CranesComp},
 };
 </script>
 
