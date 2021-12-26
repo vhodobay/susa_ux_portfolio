@@ -218,6 +218,7 @@ export default {
 <style lang="scss">
 .home {
   position: relative;
+  background-color: white;
 }
 
 #navbar {
