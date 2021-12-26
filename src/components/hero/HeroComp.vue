@@ -6,16 +6,17 @@
     <div class="text-box">
 
       <div class="text-image">
-        <img v-if="introData.image" :src="imageUrlFor(introData.image)" alt="susa portrait">
+        <img v-if="introData" :src="imageUrlFor(introData.image)" alt="susa portrait">
       </div>
       <div class="text-text">
-        <p>{{ introData.body }}</p>
+        <p v-if="blocks">{{blocks}}</p>
+
       </div>
     </div>
   </div>
   <div class="quote-cont">
     <div class="yellow-liner"></div>
-    <the-quote class="quote" ></the-quote>
+    <the-quote class="quote"></the-quote>
   </div>
 </template>
 
@@ -26,16 +27,19 @@ import sanity from '../../client'
 import imageUrlBuilder from '@sanity/image-url'
 
 
+
+
 const imageBuilder = imageUrlBuilder(sanity)
 const introQuery = `*[_type == "introText"] {body, "image": mainImage {asset->{_id,url}}}`
 
 export default {
   name: "HeroComp",
-  components: {CranesComp, TheQuote},
+  components: { CranesComp, TheQuote },
   props: ["wideScreen", "inView"],
   data() {
     return {
-      introData: "",
+      introData: null,
+      blocks:null
     }
   },
   methods: {
@@ -43,12 +47,13 @@ export default {
       try {
         const introData = await sanity.fetch(introQuery)
         this.introData = introData[0]
-
+        this.blocks=introData[0].body
+        console.log(this.blocks)
       } catch (e) {
         console.log(e)
       }
     },
-    imageUrlFor(source){
+    imageUrlFor(source) {
       return imageBuilder.image(source)
     }
   },
