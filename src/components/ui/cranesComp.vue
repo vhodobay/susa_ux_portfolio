@@ -56,7 +56,7 @@ export default {
   position: absolute;
   top: 44vh;
   right: 2rem;
-    @media only screen and (min-width: 1300px) {
+  @media only screen and (min-width: 1300px) {
     width: 28rem;
   }
 }
@@ -67,6 +67,6 @@ export default {
 
 .opt_2 {
   transform: scaleX(-1) rotate(40deg);
-  transition: all 1s ease-in-out 3s;
+  transition: all 0.5s ease-in-out 3s;
 }
 </style>

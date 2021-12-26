@@ -48,8 +48,8 @@ export default {
         const introData = await sanity.fetch(introQuery)
         this.introData = introData[0]
         this.blocks=introData[0].body
-        console.log(this.blocks)
-      } catch (e) {
+
+} catch (e) {
         console.log(e)
       }
     },
