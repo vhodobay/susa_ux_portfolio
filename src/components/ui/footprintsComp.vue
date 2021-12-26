@@ -29,6 +29,7 @@ export default {
       startFeetBig: false,
       inView: false,
       interval: 550,
+      speed: 350,
       seq_1: false,
       seq_2: false,
       seq_3: false,
@@ -50,7 +51,7 @@ export default {
         setTimeout(() => {
           this.seq_1 = false;
           this.seq_2 = true;
-        }, this.interval);
+        }, this.speed);
       }
     },
     seq_2() {
@@ -58,7 +59,7 @@ export default {
         setTimeout(() => {
           this.seq_2 = false;
           this.seq_3 = true;
-        }, this.interval);
+        }, this.speed);
       }
     },
     seq_3() {
@@ -66,7 +67,7 @@ export default {
         setTimeout(() => {
           this.seq_3 = false;
           this.seq_4 = true;
-        }, this.interval);
+        }, this.speed);
       }
     },
     seq_4() {
@@ -74,7 +75,7 @@ export default {
         setTimeout(() => {
           this.seq_4 = false;
           this.seq_5 = true;
-        }, this.interval);
+        }, this.speed);
       }
     },
     seq_5() {
@@ -82,7 +83,7 @@ export default {
         setTimeout(() => {
           this.seq_5 = false;
           this.seq_6 = true;
-        }, this.interval);
+        }, this.speed);
       }
     },
     seq_6() {
@@ -90,7 +91,7 @@ export default {
         setTimeout(() => {
           this.seq_6 = false;
           this.seqStarter();
-        }, this.interval);
+        }, this.speed);
       }
     },
   },
@@ -156,7 +157,7 @@ export default {
   width: 5rem;
   margin-bottom: 3rem;
   &:hover {
-transform: scale(1.2)
+    transform: scale(1.2);
   }
 }
 
@@ -168,5 +169,9 @@ transform: scale(1.2)
 #fp_2 {
   position: relative;
   left: 18vw;
+}
+
+.go-bigger {
+  background-color: white;
 }
 </style>
