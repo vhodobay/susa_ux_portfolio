@@ -1,20 +1,33 @@
 <template>
   <div class="container">
     <div class="unit">
-      <h2>Overview</h2>
-      <p>{{ assetSet.overview }}</p>
+      <h2>
+        {{ title1 }}
+      </h2>
+      <p>
+        {{ text1 }}
+      </p>
     </div>
     <div class="unit">
-      <h2>Problem Statement</h2>
-      <p>{{ assetSet.problemStatement }}</p>
+      <h2>
+        {{ title2 }}
+      </h2>
+      <p>
+        {{ text2 }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    title1: String,
+    title2: String,
+    text1: String,
+    text2: String,
+  },
   name: "MoreDetailsComp",
-  props: ["assetSet"],
 };
 </script>
 

@@ -52,6 +52,16 @@ export default {
       title: "Problem Statement",
       type: "text",
     },
+    {
+      name: "process",
+      title: "Process",
+      type: "text",
+    },
+    {
+      name: "outcomes",
+      title: "Outcomes",
+      type: "text",
+    },
 
     {
       name: "mainImage",
@@ -61,9 +71,49 @@ export default {
         hotspot: true,
       },
     },
-        {
+    {
       name: "phoneImage_1",
       title: "Phone image 1",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },
+    {
+      name: "phoneImage_2",
+      title: "Phone image 2",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },
+    {
+      name: "phoneImage_3",
+      title: "Phone image 3",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },
+    {
+      name: "phoneImage_4",
+      title: "Phone image 4",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },
+    {
+      name: "phoneImage_5",
+      title: "Phone image 5",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },
+    {
+      name: "phoneImage_6",
+      title: "Phone image 6",
       type: "image",
       options: {
         hotspot: false,
