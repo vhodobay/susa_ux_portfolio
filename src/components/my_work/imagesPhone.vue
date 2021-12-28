@@ -24,6 +24,7 @@ export default {
         return "var(--color-petrol-blue)";
       }
     },
+    
   },
 };
 </script>
