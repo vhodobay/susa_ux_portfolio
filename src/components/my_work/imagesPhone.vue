@@ -9,11 +9,13 @@
     <div class="image" :style="{ backgroundColor: setColor }">
       <img :src="image_3.asset.url" alt="phone app" />
     </div>
+
   </div>
 </template>
 
 <script>
 export default {
+  components: {},
   name: "ImagesPhone",
   props: ["color", "image_1", "image_2", "image_3"],
   computed: {
@@ -24,7 +26,9 @@ export default {
         return "var(--color-petrol-blue)";
       }
     },
-    
+    calcInnerWidth() {
+      return window.innerWidth > 500;
+    },
   },
 };
 </script>

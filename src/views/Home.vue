@@ -62,7 +62,7 @@
 
 <script>
 // @ is an alias to /src
-
+import {defineAsyncComponent} from 'vue'
 import Navbar from "@/components/navbar/Navbar";
 import HeroComp from "@/components/hero/HeroComp";
 import AboutComp from "@/components/about/aboutComp";
@@ -71,8 +71,10 @@ import FootprintsComp from "@/components/ui/footprintsComp";
 import MyWorkComp from "@/components/my_work/myWorkComp";
 import BottomBlur from "@/components/ui/bottomBlur";
 import sanity from '../client'
-import ContactMe from "@/components/contactMe";
+
 // import debounce from "lodash.debounce";
+
+const ContactMe = defineAsyncComponent(()=>import("@/components/contactMe"))
 
 const eduQuery = `*[_type == "education"] {skill}`
 const skillQuery = `*[_type == "skill"] {skill}`

@@ -1,7 +1,8 @@
 <template>
+<section>
   <cranes-comp :wide-screen="wideScreen" :move-the-bird="inView"></cranes-comp>
 
-  <section class="container" id="about">
+  <div class="container" id="about">
     <div class="yellow-container">
       <div class="yellow-liner"></div>
     </div>
@@ -18,7 +19,9 @@
   <p v-if="aboutData">{{aboutData.body3}}</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+  
 </template>
 
 <script>
