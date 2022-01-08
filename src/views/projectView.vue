@@ -1,61 +1,63 @@
 <template>
-  <navbar></navbar>
-
+  <navbar @contact-me="contactMeStart" @scroll-to-about="pushToAbout"
+          @scroll-to-top="null"
+          @scroll-to-work="pushToMyWork"
+  ></navbar>
+  <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>
   <div class="container_1">
     <div>
       <project-unit-comp
-        v-if="assetsReady"
-        :asset-set="assetsReady"
+          v-if="assetsReady"
+          :asset-set="assetsReady"
       ></project-unit-comp>
     </div>
 
     <div>
       <work-details-comp v-if="assetsReady" :data-set="assetsReady">
-        <template v-slot:title_1> </template>
       </work-details-comp>
     </div>
   </div>
 
   <div class="container_2">
     <more-details-comp
-      v-if="assetsReady"
-      title1="Overview"
-      title2="Problem Statement"
-      :text1="assetsReady.overview"
-      :text2="assetsReady.problemStatement"
+        v-if="assetsReady"
+        title1="Overview"
+        title2="Problem Statement"
+        :text1="assetsReady.overview"
+        :text2="assetsReady.problemStatement"
     >
     </more-details-comp>
   </div>
 
   <div class="container_3">
     <images-phone
-      v-if="assetsReady"
-      :image_1="assetsReady.imagePhone_1"
-      :image_2="assetsReady.imagePhone_2"
-      :image_3="assetsReady.imagePhone_3"
-      color="yellow"
+        v-if="assetsReady"
+        :image_1="assetsReady.imagePhone_1"
+        :image_2="assetsReady.imagePhone_2"
+        :image_3="assetsReady.imagePhone_3"
+        color="yellow"
     >
     </images-phone>
   </div>
 
   <div class="container_2">
     <more-details-comp
-      v-if="assetsReady"
-      title1="Process"
-      title2="Outcomes"
-      :text1="assetsReady.process"
-      :text2="assetsReady.outcomes"
+        v-if="assetsReady"
+        title1="Process"
+        title2="Outcomes"
+        :text1="assetsReady.process"
+        :text2="assetsReady.outcomes"
     >
     </more-details-comp>
   </div>
 
   <div class="container_3">
     <images-phone
-      v-if="assetsReady"
-      :image_1="assetsReady.imagePhone_4"
-      :image_2="assetsReady.imagePhone_5"
-      :image_3="assetsReady.imagePhone_6"
-      color="blue"
+        v-if="assetsReady"
+        :image_1="assetsReady.imagePhone_4"
+        :image_2="assetsReady.imagePhone_5"
+        :image_3="assetsReady.imagePhone_6"
+        color="blue"
     >
     </images-phone>
   </div>
@@ -70,6 +72,8 @@ import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
 import MoreDetailsComp from "@/components/my_work/moreDetailsComp.vue";
 import ImagesPhone from "@/components/my_work/imagesPhone.vue";
+import ContactMe from "@/components/contactMe";
+
 
 const imageBuilder = imageUrlBuilder(sanity);
 const assetQuery = `*[slug.current == $slug] {_id, title, url, role, company, date, projectType, problemStatement, overview, process, outcomes,
@@ -85,6 +89,7 @@ const assetQuery = `*[slug.current == $slug] {_id, title, url, role, company, da
 export default {
   name: "projectView",
   components: {
+    ContactMe,
     Navbar,
     WorkDetailsComp,
     ProjectUnitComp,
@@ -94,20 +99,30 @@ export default {
   data() {
     return {
       assetsReady: null,
+      contactMe: false,
     };
   },
   computed: {},
   methods: {
+    contactMeStart() {
+      this.contactMe = !this.contactMe
+
+    },
     async theData() {
       try {
         const assetsReady = await sanity.fetch(assetQuery, {
           slug: this.$route.params.slug,
         });
         this.assetsReady = assetsReady[0];
-        console.log(this.assetsReady);
       } catch (e) {
         console.log(e);
       }
+    },
+    pushToAbout(){
+      this.$router.push('/')
+    },
+    pushToMyWork(){
+      this.$router.push('/')
     },
   },
   imageUrlFor(source) {
@@ -125,9 +140,11 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
 .container_2 {
   margin: 2rem;
 }
+
 .container_3 {
   margin: 2rem;
 }

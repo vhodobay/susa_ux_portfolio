@@ -132,7 +132,6 @@ export default {
   methods: {
     contactMeStart(){
       this.contactMe=!this.contactMe
-
     },
     async fetchEducation() {
       try {
@@ -147,7 +146,7 @@ export default {
     onElementIntersects(entries) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          return;
+          return
         } else {
           this.heroInView = entry.target.id === "hero-comp";
           this.myWorkInView = entry.target.id === "my-work-comp";
