@@ -29,6 +29,10 @@
     </more-details-comp>
   </div>
 
+  <div v-if="assetsReady && assetsReady.desktopImage_1 && assetsReady.desktopImage_2" class="container_3">
+    <laptops-images :image_1="assetsReady.desktopImage_1" :image_2="assetsReady.desktopImage_2"></laptops-images>
+  </div>
+
   <div class="container_3">
     <images-phone
         v-if="assetsReady && assetsReady.imagePhone_1 && assetsReady.imagePhone_2 && assetsReady.imagePhone_3"
@@ -73,6 +77,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import MoreDetailsComp from "@/components/my_work/moreDetailsComp.vue";
 import ImagesPhone from "@/components/my_work/imagesPhone.vue";
 import ContactMe from "@/components/contactMe";
+import LaptopsImages from "@/components/my_work/laptopsImages";
 
 
 const imageBuilder = imageUrlBuilder(sanity);
@@ -84,11 +89,14 @@ const assetQuery = `*[slug.current == $slug] {_id, title, url, role, company, da
  "imagePhone_4": phoneImage_4{asset->{_id, url}},
  "imagePhone_5": phoneImage_5{asset->{_id, url}},
  "imagePhone_6": phoneImage_6{asset->{_id, url}},
+ "desktopImage_1": desktopImage_1{asset->{_id, url}},
+ "desktopImage_2": desktopImage_2{asset->{_id, url}},
  }`;
 
 export default {
   name: "projectView",
   components: {
+    LaptopsImages,
     ContactMe,
     Navbar,
     WorkDetailsComp,
@@ -118,10 +126,10 @@ export default {
         console.log(e);
       }
     },
-    pushToAbout(){
+    pushToAbout() {
       this.$router.push('/')
     },
-    pushToMyWork(){
+    pushToMyWork() {
       this.$router.push('/')
     },
   },

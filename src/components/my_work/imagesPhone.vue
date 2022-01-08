@@ -1,15 +1,8 @@
 <template>
   <div class="container">
-    <div class="image" :style="{ backgroundColor: setColor }">
-      <img :src="image_1.asset.url" alt="phone app" />
+    <div v-for="image in images" :key="image._id" class="image" :style="{ backgroundColor: setColor }">
+      <img :src="image.asset.url" alt="phone app" />
     </div>
-    <div class="image" :style="{ backgroundColor: setColor }">
-      <img :src="image_2.asset.url" alt="phone app" />
-    </div>
-    <div class="image" :style="{ backgroundColor: setColor }">
-      <img :src="image_3.asset.url" alt="phone app" />
-    </div>
-
   </div>
 </template>
 
@@ -29,6 +22,9 @@ export default {
     calcInnerWidth() {
       return window.innerWidth > 500;
     },
+    images(){
+      return [this.image_1, this.image_2, this.image_3]
+    }
   },
 };
 </script>

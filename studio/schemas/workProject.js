@@ -119,6 +119,21 @@ export default {
         hotspot: false,
       },
     },
+    {
+      name: "desktopImage_1",
+      title: "Desktop Kép 1",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },    {
+      name: "desktopImage_2",
+      title: "Desktop Kép 2",
+      type: "image",
+      options: {
+        hotspot: false,
+      },
+    },
   ],
 
   preview: {

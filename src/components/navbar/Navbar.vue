@@ -46,7 +46,7 @@ export default {
   font-size: 2rem;
   cursor: pointer;
   color: #216477;
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
 
   a {
     color: #216477;
@@ -55,8 +55,8 @@ export default {
   }
 
   &:hover {
-    transform: scale(1.04);
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    transform: scale(1.02);
+    //text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
   }
 }
 
