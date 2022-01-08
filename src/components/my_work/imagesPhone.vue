@@ -35,11 +35,17 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  @media screen and (min-width: 90em){
+    justify-content: space-evenly;
+  }
 }
 .image {
   width: 27vw;
   height: 100%;
   margin: 2rem 0;
+  @media screen and (min-width: 90em){
+    width: 18.8vw;
+  }
   img {
     width: 100%;
     transform: rotate3d(1.2, 1.1, 0.9, 0.03turn);
