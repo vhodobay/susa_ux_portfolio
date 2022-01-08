@@ -20,7 +20,7 @@
 
   <div class="container_2">
     <more-details-comp
-        v-if="assetsReady"
+        v-if="assetsReady && assetsReady.overView && assetsReady.problemStatement"
         title1="Overview"
         title2="Problem Statement"
         :text1="assetsReady.overview"
@@ -31,7 +31,7 @@
 
   <div class="container_3">
     <images-phone
-        v-if="assetsReady"
+        v-if="assetsReady && assetsReady.imagePhone_1 && assetsReady.imagePhone_2 && assetsReady.imagePhone_3"
         :image_1="assetsReady.imagePhone_1"
         :image_2="assetsReady.imagePhone_2"
         :image_3="assetsReady.imagePhone_3"
@@ -42,7 +42,7 @@
 
   <div class="container_2">
     <more-details-comp
-        v-if="assetsReady"
+        v-if="assetsReady && assetsReady.process && assetsReady. outcomes"
         title1="Process"
         title2="Outcomes"
         :text1="assetsReady.process"
@@ -53,7 +53,7 @@
 
   <div class="container_3">
     <images-phone
-        v-if="assetsReady"
+        v-if="assetsReady && assetsReady.imagePhone_4 && assetsReady.imagePhone_5 && assetsReady.imagePhone_6"
         :image_1="assetsReady.imagePhone_4"
         :image_2="assetsReady.imagePhone_5"
         :image_3="assetsReady.imagePhone_6"
