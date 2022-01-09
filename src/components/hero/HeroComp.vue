@@ -10,12 +10,12 @@
       </div>
       <div class="text-text">
         <p v-if="blocks">{{blocks}}</p>
-
       </div>
+
     </div>
   </div>
   <div class="quote-cont">
-    <div class="yellow-liner"></div>
+    <div v-if="wideScreen" class="yellow-liner"></div>
     <the-quote class="quote"></the-quote>
   </div>
 </template>
@@ -70,11 +70,15 @@ export default {
 
 .text-box {
   position: relative;
+  flex-direction: column;
+
   top: 5vh;
   display: flex;
   justify-content: flex-start;
   text-align: start;
-
+  @media only screen and (min-width: 40em) {
+flex-direction: row;
+  }
 }
 
 .text-image {
@@ -82,15 +86,24 @@ export default {
 
 
   img {
-    width: 20vw;
+    width: 70vw;
     margin: 2.6rem;
+    @media only screen and (min-width: 40em) {
+width: 20vw;
+    }
   }
 }
 
 .text-text {
-  width: 40%;
-  font-size: 2.6rem;
+  width: 80vw;
   align-self: center;
+  font-size: 1.6rem;
+
+  @media only screen and (min-width: 40em) {
+    width: 40%;
+    font-size: 2.6rem;
+
+  }
 }
 
 

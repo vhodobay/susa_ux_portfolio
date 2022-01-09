@@ -3,19 +3,26 @@
     <div class="container">
       <div class="name">
         <span @click="$emit('scrollToTop')"
-          ><router-link to="/">Susa Horvath</router-link></span
+        ><router-link to="/">Susa Horvath</router-link></span
         >
       </div>
 
       <div class="menu-items">
-        <ul>
-          <li @click="$emit('scrollToWork')">My Work</li>
-          <li @click="$emit('scrollToAbout')">About</li>
-          <li @click="$emit('contactMe')">
-            Contact
-<!--            <a href="mailto:susainthekitchen@gmail.com">Contact</a>-->
-          </li>
-        </ul>
+        <transition name="fade">
+          <ul v-if="home">
+            <li v-if="wideScreen" @click="$emit('scrollToWork')">My Work</li>
+            <li v-if="wideScreen" @click="$emit('scrollToAbout')">About</li>
+            <li @click="$emit('contactMe')">
+              Contact
+            </li>
+          </ul>
+          <ul v-else>
+            <li>
+              <router-link to="/">Back</router-link>
+            </li>
+          </ul>
+        </transition>
+
       </div>
     </div>
   </div>
@@ -24,12 +31,24 @@
 <script>
 export default {
   name: "Navbar",
+  props: ["wideScreen", "home"],
   emits: ["scrollToTop", "scrollToWork", "scrollToAbout", "contactMe"],
 };
 </script>
 
 <style scoped lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .container {
+  padding: 1rem 0;
   width: 100vw;
   display: flex;
   font-size: 1.6rem;
@@ -37,6 +56,9 @@ export default {
   justify-content: space-between;
   text-decoration: none;
   position: relative;
+  @media only screen and (min-width: 40em) {
+    padding: 0;
+  }
 }
 
 .name {

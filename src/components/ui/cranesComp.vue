@@ -25,7 +25,11 @@ export default {
 
 <style scoped lang="scss">
 .container-birds {
-  position: relative;
+  display: none;
+  @media only screen and (min-width: 40em) {
+    display: block;
+    position: relative;
+  }
 }
 
 .daru-left {

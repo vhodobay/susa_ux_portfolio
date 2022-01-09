@@ -9,7 +9,6 @@ body {
 }
 
 .main-container {
-
   position: relative;
 }
 
@@ -69,5 +68,22 @@ body {
   transition: background 2s linear;
 }
 
+//navigation
+.home {
+  position: relative;
+  background-color: white;
+}
+.navbar-class {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  transition: all 0.3s linear;
+  background: rgba(252, 252, 252, 0.4);
+
+  &:hover {
+    background: rgba(252, 252, 252, 1);
+  }
+}
 
 

@@ -1,8 +1,10 @@
 <template>
-  <navbar @contact-me="contactMeStart" @scroll-to-about="pushToAbout"
-          @scroll-to-top="null"
-          @scroll-to-work="pushToMyWork"
-  ></navbar>
+  <div class="home">
+    <navbar class="navbar-class" @contact-me="contactMeStart" @scroll-to-about="pushToAbout"
+            @scroll-to-top="null"
+            @scroll-to-work="pushToMyWork" home="false" wide-screen="false"
+    ></navbar>
+  </div>
   <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>
   <div class="container_1">
     <div>
@@ -143,10 +145,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container_1 {
+  margin: 3rem 0;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  @media only screen and (min-width: 1300px) {
+    align-items: stretch;
+
+  }
 }
 
 .container_2 {

@@ -8,17 +8,19 @@
     ]"
   >
     <navbar
-        id="navbar"
+        class="navbar-class"
         @scroll-to-about="scrollTo('about-comp')"
         @scroll-to-top="scrollToTop"
         @scroll-to-work="scrollTo('my-work-comp')"
         @contact-me="contactMeStart"
+        home="true" :wide-screen="wideScreen"
     ></navbar>
     <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>
     <bottom-blur></bottom-blur>
     <div class="blur-effect"></div>
     <main class="main-container">
       <div class="content-section">
+
         <section id="hero-comp">
           <hero-comp
               :wide-screen="wideScreen"
@@ -26,7 +28,7 @@
           ></hero-comp>
         </section>
 
-        <footprints-comp ></footprints-comp>
+        <footprints-comp v-if="wideScreen"></footprints-comp>
 
         <section id="my-work-comp">
           <my-work-comp
@@ -200,7 +202,7 @@ export default {
   },
   computed: {
     wideScreen() {
-      return window.innerWidth >= 500;
+      return window.innerWidth >= 600;
     },
   },
   watch: {
@@ -217,23 +219,7 @@ export default {
 </script>
 
 <style lang="scss">
-.home {
-  position: relative;
-  background-color: white;
-}
 
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 3;
-  transition: all 0.3s linear;
-  background: rgba(252, 252, 252, 0.4);
-
-  &:hover {
-    background: rgba(252, 252, 252, 1);
-  }
-}
 
 .board-container {
   display: flex;
