@@ -59,7 +59,7 @@ export default {
 <style scoped lang="scss">
 .container {
   position: fixed;
-  z-index: 1;
+  z-index: 6;
   right: -31.5rem;
   top: 6rem;
   display: flex;

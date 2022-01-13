@@ -26,9 +26,6 @@ import CranesComp from "@/components/ui/cranesComp";
 import sanity from '../../client'
 import imageUrlBuilder from '@sanity/image-url'
 
-
-
-
 const imageBuilder = imageUrlBuilder(sanity)
 const introQuery = `*[_type == "introText"] {body, "image": mainImage {asset->{_id,url}}}`
 

@@ -6,7 +6,6 @@
         ><router-link to="/">Susa Horvath</router-link></span
         >
       </div>
-
       <div class="menu-items">
         <transition name="fade">
           <ul v-if="home">
@@ -22,8 +21,32 @@
             </li>
           </ul>
         </transition>
-
       </div>
+    </div>
+
+    <div class="hamburger-input-checkbox hamburger-button">
+      <button @click.prevent="setVisibleMenu">
+        <svg v-if="!visibleMenu" style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+        </svg>
+        <svg v-else style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor"
+                d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+        </svg>
+      </button>
+    </div>
+
+
+    <div class="mobil-menu">
+      <transition name="slide">
+        <ul v-show="visibleMenu">
+          <li @click="$emit('scrollToWork')">My Work</li>
+          <li @click="$emit('scrollToAbout')">About</li>
+          <li @click="$emit('contactMe')">
+            Contact
+          </li>
+        </ul>
+      </transition>
     </div>
   </div>
 </template>
@@ -33,6 +56,17 @@ export default {
   name: "Navbar",
   props: ["wideScreen", "home"],
   emits: ["scrollToTop", "scrollToWork", "scrollToAbout", "contactMe"],
+  data() {
+    return {
+      visibleMenu: false
+    }
+  },
+  methods: {
+    setVisibleMenu() {
+      this.visibleMenu = !this.visibleMenu
+
+    }
+  }
 };
 </script>
 
@@ -47,32 +81,49 @@ export default {
   opacity: 0;
 }
 
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(-18rem);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 1s ease;
+}
+
 .container {
-  padding: 1rem 0;
-  width: 100vw;
   display: flex;
-  font-size: 1.6rem;
-  font-weight: 600;
-  justify-content: space-between;
-  text-decoration: none;
+  width: 100vw;
   position: relative;
   @media only screen and (min-width: 40em) {
-    padding: 0;
+    padding: 1rem 0;
+    width: 100vw;
+    font-size: 1.6rem;
+    font-weight: 600;
+    justify-content: space-between;
+    text-decoration: none;
+    position: relative;
+
   }
 }
 
 .name {
   text-transform: uppercase;
+  font-size: 1.5rem;
   align-self: flex-end;
-  margin: 0 4rem;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #216477;
-  transition: all 0.2s linear;
+  margin: 1rem;
+
+
+  @media only screen and (min-width: 40em) {
+    margin: 0 4rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #216477;
+    transition: all 0.2s linear;
+  }
 
   a {
     color: #216477;
-    font-size: 2rem;
     text-decoration: none;
   }
 
@@ -86,9 +137,16 @@ export default {
   display: inline;
   text-transform: uppercase;
 
+
   ul {
-    list-style: none;
-    margin: 1rem 5rem 0 0;
+    display: none;
+    flex-direction: column;
+    @media only screen and (min-width: 40em) {
+      display: block;
+      list-style: none;
+      margin: 1rem 5rem 0 0;
+    }
+
 
     li {
       display: inline;
@@ -105,5 +163,54 @@ export default {
       }
     }
   }
+
+  input {
+    padding: 1rem;
+  }
 }
+
+.hamburger-input-checkbox {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  @media only screen and (min-width: 40em) {
+    display: none;
+  }
+
+  button {
+    padding: 1rem;
+    background-color: transparent;
+    border-radius: 1rem;
+  }
+}
+
+.mobil-menu {
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+  text-transform: uppercase;
+
+  ul {
+    list-style: none;
+    background-color: white;
+    padding: 2rem 4rem;
+    border-bottom: solid 2px var(--color-petrol-blue);
+    border-radius: 2rem;
+  }
+
+  li {
+    padding: 1.4rem;
+    color: #216477;
+    font-size: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    a {
+      color: #216477;
+      font-size: 2rem;
+      text-decoration: none;
+    }
+  }
+}
+
 </style>
