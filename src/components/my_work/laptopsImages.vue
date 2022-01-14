@@ -30,9 +30,14 @@ export default {
 }
 
 .image {
-  width: 40vw;
-  height: 100%;
+
   margin: 2rem;
+  @media only screen and (min-width: 40em) {
+    margin: 0;
+    width: 40vw;
+    height: 100%;
+    margin: 2rem;
+  }
   @media only screen and (min-width: 1300px) {
 
   }

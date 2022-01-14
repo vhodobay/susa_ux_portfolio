@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-for="image in images" :key="image._id" class="image" :style="{ backgroundColor: setColor }">
-      <img :src="image.asset.url" alt="phone app" />
+      <img :src="image.asset.url" alt="phone app"/>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     calcInnerWidth() {
       return window.innerWidth > 500;
     },
-    images(){
+    images() {
       return [this.image_1, this.image_2, this.image_3]
     }
   },
@@ -35,17 +35,23 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  @media screen and (min-width: 90em){
+  @media screen and (min-width: 90em) {
     justify-content: space-evenly;
   }
 }
+
 .image {
-  width: 27vw;
-  height: 100%;
-  margin: 2rem 0;
-  @media screen and (min-width: 90em){
+  width: 70vw;
+  margin: 2rem auto;
+  @media only screen and (min-width: 40em) {
+    width: 25vw;
+    height: 100%;
+    margin: 2rem 0;
+  }
+  @media screen and (min-width: 90em) {
     width: 18.8vw;
   }
+
   img {
     width: 100%;
     transform: rotate3d(1.2, 1.1, 0.9, 0.03turn);

@@ -7,7 +7,7 @@
   </div>
   <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>
   <div class="container_1">
-    <div>
+    <div class="project-unit">
       <project-unit-comp
           v-if="assetsReady"
           :asset-set="assetsReady"
@@ -22,7 +22,7 @@
 
   <div class="container_2">
     <more-details-comp
-        v-if="assetsReady && assetsReady.overView && assetsReady.problemStatement"
+        v-if="assetsReady && assetsReady.overview && assetsReady.problemStatement"
         title1="Overview"
         title2="Problem Statement"
         :text1="assetsReady.overview"
@@ -124,6 +124,7 @@ export default {
           slug: this.$route.params.slug,
         });
         this.assetsReady = assetsReady[0];
+
       } catch (e) {
         console.log(e);
       }
@@ -147,15 +148,27 @@ export default {
 
 <style scoped lang="scss">
 .container_1 {
-  margin: 3rem 0;
+  margin: 3rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  @media only screen and (min-width: 1300px) {
+
+  @media only screen and (min-width: 40em) {
+    margin: 3rem 0;
+
+  }
+    @media only screen and (min-width: 1300px) {
     align-items: stretch;
 
   }
 }
+
+.project-unit {
+  display: none;
+  @media only screen and (min-width: 40em) {
+display: block;
+  }
+  }
 
 .container_2 {
   margin: 2rem;
