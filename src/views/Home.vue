@@ -28,7 +28,7 @@
           ></hero-comp>
         </section>
 
-        <footprints-comp v-if="wideScreen"></footprints-comp>
+        <footprints-comp ></footprints-comp>
 
         <section id="my-work-comp">
           <my-work-comp

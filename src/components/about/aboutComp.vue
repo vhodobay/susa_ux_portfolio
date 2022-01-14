@@ -1,27 +1,27 @@
 <template>
-<section>
-  <cranes-comp :wide-screen="wideScreen" :move-the-bird="inView"></cranes-comp>
+  <section>
+    <cranes-comp :wide-screen="wideScreen" :move-the-bird="inView"></cranes-comp>
 
-  <div class="container" id="about">
-    <div class="yellow-container">
-      <div class="yellow-liner"></div>
-    </div>
-    <div class="about-container">
-      <div class="image">
-        <div class="portrait">
-          <img v-if="aboutData" :src="imageUrlFor(aboutData.image)" alt="susa portrait"/>
+    <div class="container" id="about">
+      <div class="yellow-container">
+        <div class="yellow-liner"></div>
+      </div>
+      <div class="about-container">
+        <div class="image">
+          <div class="portrait">
+            <img v-if="aboutData" :src="imageUrlFor(aboutData.image)" alt="susa portrait"/>
+          </div>
+        </div>
+
+        <div class="text-box">
+          <p v-if="aboutData">{{ aboutData.body1 }}</p>
+          <p v-if="aboutData">{{ aboutData.body2 }}</p>
+          <p v-if="aboutData">{{ aboutData.body3 }}</p>
         </div>
       </div>
-
-      <div class="text-box">
-  <p v-if="aboutData">{{aboutData.body1}}</p>
-  <p v-if="aboutData">{{aboutData.body2}}</p>
-  <p v-if="aboutData">{{aboutData.body3}}</p>
-      </div>
     </div>
-  </div>
-</section>
-  
+  </section>
+
 </template>
 
 <script>
@@ -51,10 +51,11 @@ export default {
   },
   data() {
     return {
-      aboutData:null};
+      aboutData: null
+    };
   },
   created() {
-this.fetchIntroText()
+    this.fetchIntroText()
   },
   components: {CranesComp},
 };
@@ -62,21 +63,29 @@ this.fetchIntroText()
 
 <style lang="scss">
 .container {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
+  @media only screen and (min-width: 40em) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
 }
 
 .about-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: 25% auto 35%;
-  min-height: 75vh;
-  margin-top: 3rem;
-  @media only screen and(min-width: 1300px) {
-  grid-template-columns: 25% auto 40%;
+
+  @media only screen and (min-width: 40em) {
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 25% auto 35%;
+    min-height: 75vh;
+    margin-top: 3rem;
   }
+  @media only screen and(min-width: 1300px) {
+    grid-template-columns: 25% auto 40%;
+  }
+
   p {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 500;
     @media only screen and (min-width: 1300px) {
       font-size: 2.5rem;
