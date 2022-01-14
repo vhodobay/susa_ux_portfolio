@@ -97,7 +97,7 @@ export default {
 }
 
 .slide-in {
-  transform: translateX(-31rem);
+  transform: translateX(-35rem);
   transition: all 1s ease;
 }
 
@@ -106,7 +106,6 @@ export default {
   width: 2.5rem;
   height: .95rem;
   background-color: var(--color-yellow);
-
   clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
   border-radius: 1rem;
   //clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%)
