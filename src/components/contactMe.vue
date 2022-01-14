@@ -97,7 +97,7 @@ export default {
 }
 
 .slide-in {
-  transform: translateX(-35rem);
+  transform: translateX(-31rem);
   transition: all 1s ease;
 }
 
