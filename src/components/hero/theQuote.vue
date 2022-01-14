@@ -45,16 +45,15 @@ export default {
 <style scoped lang="scss">
 .quote-text {
   width: 100%;
-
   font-family: "Josefin Slab", sans-serif;
   font-size: 2rem;
-
-  line-height: 2;
   font-weight: bold;
+  line-height: 1.4;
+
   @media only screen and (min-width: 40em) {
     width: 70%;
     font-size: 3rem;
-
+    line-height: 2;
   }
-  }
+}
 </style>

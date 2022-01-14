@@ -53,7 +53,7 @@ export default {
           element.animate([
             {}, {opacity: 0}, {opacity: 1}
           ], {
-            duration: 1500, delay: idx * 1400 + idx * 400, iterations: Infinity, easing: 'ease-out'
+            duration: 1600, delay: idx * 1400 + idx * 400, iterations: Infinity, easing: 'ease-out'
           })
         })
       }, 100)
