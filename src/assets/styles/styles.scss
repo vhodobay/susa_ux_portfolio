@@ -43,12 +43,14 @@ body {
 }
 
 .yellow-liner {
-  position: relative;
-  right: 2.4rem;
-  background-color: var(--color-yellow);
-  height: 100%;
-  width: 1rem;
-  margin: 1rem 1rem 1rem 5rem;
+
+    display: block;
+    position: relative;
+    right: 2.4rem;
+    background-color: var(--color-yellow);
+    height: 100%;
+    width: 1rem;
+    margin: 1rem 1rem 1rem 5rem;
 }
 
 .bg-hero-in-view {
@@ -73,6 +75,7 @@ body {
   position: relative;
   background-color: white;
 }
+
 .navbar-class {
   position: fixed;
   top: 0;

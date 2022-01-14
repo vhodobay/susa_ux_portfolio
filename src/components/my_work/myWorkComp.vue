@@ -72,6 +72,11 @@ export default {
 
 }
 
+.yellow-container {
+
+
+}
+
 .title {
 
 }

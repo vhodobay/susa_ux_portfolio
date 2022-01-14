@@ -105,13 +105,21 @@ export default {
 }
 
 .yellow {
-  position: absolute;
-  height: 5.5rem;
+
+    position: absolute;
+  height: 7.5rem;
   background-color: var(--color-yellow);
   width: 1rem;
-  right: -5rem;
-  bottom: 4rem;
+  right: 3rem;
+  bottom: 16vh;
   transition: all 0.3s ease;
+  @media only screen and (min-width: 40em) {
+    height: 5.5rem;
+    right: -5rem;
+    bottom: 4rem;
+
+  }
+
   @media only screen and (min-width: 1300px) {
     height: 9rem;
   }
