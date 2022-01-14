@@ -48,7 +48,12 @@ body {
   background-color: var(--color-yellow);
   height: 100%;
   width: 1rem;
-  margin: 1rem 1rem 1rem 5rem;
+  margin: 1rem 1rem 1rem 2rem;
+}
+@media only screen and (min-width: 40em) {
+  .yellow-liner {
+    margin: 1rem 1rem 1rem 5rem;
+  }
 }
 
 .bg-hero-in-view {

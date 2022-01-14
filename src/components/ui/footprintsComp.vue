@@ -2,17 +2,17 @@
   <div class="footprint-container" id="footprints" @mouseenter="animateBigFeet">
     <div class="yellow-container">
       <div class="yellow-line" :class="{ 'go-bigger': seq_1 }"></div>
-      <br />
+      <br/>
       <div class="yellow-line" :class="{ 'go-bigger': seq_2 }"></div>
-      <br />
+      <br/>
       <div class="yellow-line" :class="{ 'go-bigger': seq_3 }"></div>
-      <br />
+      <br/>
       <div class="yellow-line" :class="{ 'go-bigger': seq_4 }"></div>
-      <br />
+      <br/>
       <div class="yellow-line" :class="{ 'go-bigger': seq_5 }"></div>
-      <br />
+      <br/>
       <div class="yellow-line" :class="{ 'go-bigger': seq_6 }"></div>
-      <br />
+      <br/>
     </div>
 
     <div class="footprints" id="fp_1"></div>
@@ -41,7 +41,8 @@ export default {
   mounted() {
     this.seqStarter();
   },
-  beforeUnmount() {},
+  beforeUnmount() {
+  },
   watch: {
     startFeetBig() {
       this.animateBigFeet();
@@ -106,7 +107,7 @@ export default {
       const foot_2 = document.querySelector("#fp_2");
       const foot_3 = document.querySelector("#last-footprint");
 
-      const animations = [{}, { transform: "scale(1.5)" }];
+      const animations = [{}, {transform: "scale(1.5)"}];
       const animationTiming_1 = {
         duration: this.interval,
         fill: "forwards",
@@ -143,8 +144,15 @@ export default {
 
 .yellow-container {
   position: absolute;
-  left: 2.6rem;
-  top: 3rem;
+  left: -.4rem;
+  top: 2.7rem;
+
+  @media only screen and (min-width: 40em) {
+    position: absolute;
+    left: 2.6rem;
+    top: 3.2rem;
+  }
+
   width: 1rem;
 }
 
@@ -156,6 +164,7 @@ export default {
   height: 5rem;
   width: 5rem;
   margin-bottom: 3rem;
+
   &:hover {
     transform: scale(1.2);
   }
