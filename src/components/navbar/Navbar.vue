@@ -24,13 +24,13 @@
       </div>
     </div>
 
-    <div class="hamburger-input-checkbox hamburger-button">
+    <div class="hamburger-button hamburger-button">
       <button @click.prevent="setVisibleMenu">
         <svg v-if="!visibleMenu" style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+          <path fill="#216477" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
         </svg>
         <svg v-else style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path fill="currentColor"
+          <path fill="#216477"
                 d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
         </svg>
       </button>
@@ -40,9 +40,9 @@
     <div class="mobil-menu">
       <transition name="slide">
         <ul v-show="visibleMenu">
-          <li @click="$emit('scrollToWork')">My Work</li>
-          <li @click="$emit('scrollToAbout')">About</li>
-          <li @click="$emit('contactMe')">
+          <li @click="menuClicked('scrollToWork')">My Work</li>
+          <li @click="menuClicked('scrollToAbout')">About</li>
+          <li @click="menuClicked('contactMe')">
             Contact
           </li>
         </ul>
@@ -64,7 +64,10 @@ export default {
   methods: {
     setVisibleMenu() {
       this.visibleMenu = !this.visibleMenu
-
+    },
+    menuClicked(instruction){
+      this.visibleMenu=false
+      this.$emit(instruction)
     }
   }
 };
@@ -109,7 +112,7 @@ export default {
 
 .name {
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   align-self: flex-end;
   margin: 1rem;
 
@@ -169,9 +172,9 @@ export default {
   }
 }
 
-.hamburger-input-checkbox {
+.hamburger-button {
   position: absolute;
-  right: 2rem;
+  right: 1rem;
   top: 2rem;
   @media only screen and (min-width: 40em) {
     display: none;
@@ -179,8 +182,9 @@ export default {
 
   button {
     padding: 1rem;
-    background-color: transparent;
+    background-color: white;
     border-radius: 1rem;
+    border: solid 2px var(--color-petrol-blue);
   }
 }
 
