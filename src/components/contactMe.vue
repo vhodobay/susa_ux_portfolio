@@ -1,27 +1,14 @@
 <template>
   <div v-if="contactData" class="container" :class="{'slide-in':clicked}">
-    <span class="details name">{{contactData.name}}</span>
-    <a href="mailto:contactData.email" class="details">{{contactData.email}}</a>
-    <span class="details">{{contactData.phone}}</span>
+    <span class="details name">{{ contactData.name }}</span>
+    <a href="mailto:contactData.email" class="details">{{ contactData.email }}</a>
+    <span class="details">{{ contactData.phone }}</span>
     <br>
-    <div  @click="$emit('closeContactMe')">
-      <span class="white-horizontal"></span>
+    <div @click="$emit('closeContactMe')">
+      <span v-for="n in 8" :key="n">
+        <span class="white-horizontal"></span>
       <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-      <span class="white-horizontal"></span>
-      <span class="yellow-horizontal"></span>
-
+      </span>
     </div>
   </div>
 </template>
@@ -29,28 +16,47 @@
 <script>
 import sanity from '../client'
 
+
 const query = `*[_type == "contact"] {name, email, phone}`
 export default {
   name: "contactMe",
   props: ["clicked"],
   emits: ["closeContactMe"],
-  data(){
+  data() {
     return {
-      contactData:null
+      contactData: null
     }
+  },
+  mounted() {
+    this.animateYellowLine()
+
   },
   created() {
     this.fetchData()
 
   }, methods: {
-    async fetchData(){
+    async fetchData() {
       try {
         const data = await sanity.fetch(query)
-        this.contactData=data[0]
+        this.contactData = data[0]
 
       } catch (e) {
         console.log(e)
       }
+    },
+    animateYellowLine() {
+      setTimeout(() => {
+        const elements = document.querySelectorAll('.yellow-horizontal')
+
+        elements.forEach((element, idx) => {
+
+          element.animate([
+            {}, {opacity: 0}, {opacity: 1}
+          ], {
+            duration: 1500, delay: idx * 1400 + idx * 400, iterations: Infinity, easing: 'ease-out'
+          })
+        })
+      }, 100)
     }
   }
 }
@@ -100,11 +106,12 @@ export default {
   width: 2.5rem;
   height: .95rem;
   background-color: var(--color-yellow);
-  -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+
   clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
   border-radius: 1rem;
   //clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%)
 }
+
 
 .white-horizontal {
   display: inline-block;
