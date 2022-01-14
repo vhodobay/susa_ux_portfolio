@@ -24,7 +24,13 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  width: 26vw;
+  width: 80vw;
+  margin: 0 3rem;
+  @media only screen and (min-width: 40em) {
+
+    margin: 0;
+    width: 26vw;
+  }
 
   ul {
     list-style: none;

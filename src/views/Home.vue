@@ -28,7 +28,7 @@
           ></hero-comp>
         </section>
 
-        <footprints-comp ></footprints-comp>
+        <footprints-comp></footprints-comp>
 
         <section id="my-work-comp">
           <my-work-comp
@@ -76,7 +76,7 @@ import sanity from '../client'
 
 // import debounce from "lodash.debounce";
 
-const ContactMe = defineAsyncComponent(()=>import("@/components/contactMe"))
+const ContactMe = defineAsyncComponent(() => import("@/components/contactMe"))
 
 const eduQuery = `*[_type == "education"] {skill}`
 const skillQuery = `*[_type == "skill"] {skill}`
@@ -97,7 +97,7 @@ export default {
   },
   data() {
     return {
-      contactMe:false,
+      contactMe: false,
       currentScrollY: 0,
       handleDebounceScroll: null,
       isUserScrolling: false,
@@ -132,8 +132,8 @@ export default {
     };
   },
   methods: {
-    contactMeStart(){
-      this.contactMe=!this.contactMe
+    contactMeStart() {
+      this.contactMe = !this.contactMe
     },
     async fetchEducation() {
       try {
@@ -222,8 +222,12 @@ export default {
 
 
 .board-container {
-  display: flex;
-  justify-content: space-around;
+  width: 100%;
+  @media only screen and (min-width: 40em) {
+
+    display: flex;
+    justify-content: space-around;
+  }
 }
 
 footer {
