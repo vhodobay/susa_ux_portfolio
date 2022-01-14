@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="image">
-      <img :src="assetSet.image.asset.url" alt="project picture" @click="goToUrl" />
+      <img :src="assetSet.image.asset.url" alt="project picture" @click="goToUrl"/>
     </div>
     <div class="title" v-on:click="goToUrl">
       <h2>{{ assetSet.title }}</h2>
@@ -14,8 +14,7 @@
 export default {
   name: "projectUnitComp",
   props: ["assetSet"],
-  computed: {
-  },
+  computed: {},
   methods: {
     goToUrl() {
       this.$router.push('/work/' + this.assetSet.slug.current);
@@ -29,8 +28,15 @@ export default {
 
 <style scoped lang="scss">
 .container {
+
+  margin-top: 15vh;
   display: grid;
   position: relative;
+
+  @media only screen and (min-width: 40em) {
+    margin-top: 0;
+
+  }
 
   &:hover > span {
     width: 1.5rem;
@@ -39,35 +45,57 @@ export default {
 }
 
 .image {
-  width: 50vw;
+  position: relative;
+  top: -5vh;
+  right: 10vw;
+  width: 100%;
+  @media only screen and (min-width: 40em) {
+    top: 0;
+    right: 0;
+    width: 50vw;
+  }
 
   img {
-    max-width: 100%;
-    height: auto;
+
+    width: 60vw;
     cursor: pointer;
-    object-fit: cover;
-  }
+    object-fit: contain;
+
+    @media only screen and (min-width: 40em) {
+      object-fit: cover;
+      max-width: 100%;
+      height: auto;
+
+    }
+    }
 }
 
 .title {
   display: inline-block;
   position: absolute;
-  right: -3rem;
-  bottom: 4rem;
-  align-self: flex-end;
+  right: 5rem;
+  bottom: 16vh;
+  align-self: center;
   text-align: start;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
   background-color: var(--color-petrol-blue);
-  width: 30rem;
   cursor: pointer;
+  width: 60vw;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  @media only screen and (min-width: 40em) {
+    align-self: flex-end;
+    right: -3rem;
+    bottom: 4rem;
+    padding: 0 3rem;
+    width: 30rem;
 
+  }
   @media only screen and (min-width: 1300px) {
     padding: 1rem 5rem;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 2.1rem;
     color: white;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     @media only screen and (min-width: 1300px) {
@@ -84,8 +112,8 @@ export default {
   right: -5rem;
   bottom: 4rem;
   transition: all 0.3s ease;
-    @media only screen and (min-width: 1300px) {
-      height: 9rem;
-    }
+  @media only screen and (min-width: 1300px) {
+    height: 9rem;
+  }
 }
 </style>

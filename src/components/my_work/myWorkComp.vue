@@ -41,14 +41,15 @@ export default {
     }
   },
   methods: {
-    imageUrlFor(source){
+    imageUrlFor(source) {
       return imageBuilder.image(source)
     },
-    async fetchAssetData(){
+    async fetchAssetData() {
       try {
         this.assets = await sanity.fetch(assetQuery)
       } catch (e) {
-        console.log(e)}
+        console.log(e)
+      }
     }
   }
 }
@@ -56,10 +57,11 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  display: flex;
-  width: 100%;
-  min-height: 40vh;
-
+  @media only screen and (min-width: 40em) {
+    display: flex;
+    width: 100%;
+    min-height: 40vh;
+  }
 }
 
 .content-area {
