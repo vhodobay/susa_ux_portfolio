@@ -41,10 +41,16 @@
     <div class="mobil-menu">
       <transition name="slide">
         <ul v-show="visibleMenu">
-          <li @click="menuClicked('my-work-comp')">My Work</li>
-          <li @click="menuClicked('about-comp')">About</li>
+          <li @click="menuClicked('my-work-comp')">
+            <router-link v-if="!home" to="/">My Work</router-link>
+            <span v-else>My Work</span>
+          </li>
+          <li @click="menuClicked('about-comp')">
+            <router-link to="/" v-if="!home">About</router-link>
+            <span v-else>About</span>
+          </li>
           <li @click="menuClicked('contactMe')">
-            Contact
+            <span style="font-size: 2rem">Contact</span>
           </li>
         </ul>
       </transition>
