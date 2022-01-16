@@ -2,7 +2,7 @@
   <div class="home">
     <navbar class="navbar-class" @contact-me="contactMeStart" @scroll-to-about="pushToAbout"
             @scroll-to-top="null"
-            @scroll-to-work="pushToMyWork" home="false" wide-screen="false"
+            @scroll-to-work="pushToMyWork" :home="false" wide-screen="false"
     ></navbar>
   </div>
   <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>

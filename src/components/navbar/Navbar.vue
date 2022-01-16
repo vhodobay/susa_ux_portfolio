@@ -8,16 +8,17 @@
       </div>
       <div class="menu-items">
         <transition name="fade">
-          <ul v-if="home">
-            <li v-if="wideScreen" @click="$emit('scrollToWork')">My Work</li>
-            <li v-if="wideScreen" @click="$emit('scrollToAbout')">About</li>
+          <ul >
+            <li v-if="wideScreen" @click="menuClicked('my-work-comp')">
+              <router-link v-if="!home" to="/">My Work</router-link>
+              <span v-else>My Work</span>
+            </li>
+            <li v-if="wideScreen" @click="menuClicked('about-comp')">
+              <router-link to="/" v-if="!home">About</router-link>
+              <span v-else>About</span>
+            </li>
             <li @click="$emit('contactMe')">
               Contact
-            </li>
-          </ul>
-          <ul v-else>
-            <li>
-              <router-link to="/">Back</router-link>
             </li>
           </ul>
         </transition>
@@ -40,8 +41,8 @@
     <div class="mobil-menu">
       <transition name="slide">
         <ul v-show="visibleMenu">
-          <li @click="menuClicked('scrollToWork')">My Work</li>
-          <li @click="menuClicked('scrollToAbout')">About</li>
+          <li @click="menuClicked('my-work-comp')">My Work</li>
+          <li @click="menuClicked('about-comp')">About</li>
           <li @click="menuClicked('contactMe')">
             Contact
           </li>
@@ -55,7 +56,7 @@
 export default {
   name: "Navbar",
   props: ["wideScreen", "home"],
-  emits: ["scrollToTop", "scrollToWork", "scrollToAbout", "contactMe"],
+  emits: ["scrollToTop", "contactMe"],
   data() {
     return {
       visibleMenu: false
@@ -65,9 +66,16 @@ export default {
     setVisibleMenu() {
       this.visibleMenu = !this.visibleMenu
     },
-    menuClicked(instruction){
-      this.visibleMenu=false
-      this.$emit(instruction)
+    menuClicked(instruction) {
+      this.visibleMenu = false
+      switch (instruction) {
+        case 'my-work-comp':
+          this.$store.commit('setScrollToWork')
+          break
+        case 'about-comp':
+          this.$store.commit('setScrollToAbout')
+          break
+      }
     }
   }
 };

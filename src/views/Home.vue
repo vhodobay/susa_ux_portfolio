@@ -9,11 +9,10 @@
   >
     <navbar
         class="navbar-class"
-        @scroll-to-about="scrollTo('about-comp')"
         @scroll-to-top="scrollToTop"
-        @scroll-to-work="scrollTo('my-work-comp')"
         @contact-me="contactMeStart"
-        home="true" :wide-screen="wideScreen"
+        home="true"
+        :wide-screen="wideScreen"
     ></navbar>
     <contact-me :clicked="contactMe" @close-contact-me="contactMeStart"></contact-me>
     <bottom-blur></bottom-blur>
@@ -201,6 +200,12 @@ export default {
     this.intersectionObserver.observe(document.querySelector("#skills"));
   },
   computed: {
+    scrollToWorkState() {
+      return this.$store.state.scrollToWork
+    },
+    scrollToAboutState() {
+      return this.$store.state.scrollToAbout
+    },
     wideScreen() {
       return window.innerWidth >= 600;
     },
@@ -214,6 +219,12 @@ export default {
           window.scrollY
       );
     },
+    scrollToWorkState() {
+      this.scrollTo('my-work-comp')
+    },
+    scrollToAboutState() {
+      this.scrollTo('about-comp')
+    }
   },
 };
 </script>

@@ -14,7 +14,5 @@
 
 #nav {
   padding: 0;
-
-
 }
 </style>
