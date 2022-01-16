@@ -50,7 +50,7 @@
             <span v-else>About</span>
           </li>
           <li @click="menuClicked('contactMe')">
-            <span style="font-size: 2rem">Contact</span>
+            <span >Contact</span>
           </li>
         </ul>
       </transition>
@@ -81,6 +81,8 @@ export default {
         case 'about-comp':
           this.$store.commit('setScrollToAbout')
           break
+        case 'contactMe':
+          this.$emit('contactMe')
       }
     }
   }
