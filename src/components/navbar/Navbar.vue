@@ -3,8 +3,7 @@
     <div class="container">
       <div class="name">
         <span @click="$emit('scrollToTop')"
-        ><router-link to="/">Susa Horvath</router-link></span
-        >
+        ><router-link to="/">Susa Horvath</router-link></span>
       </div>
       <div class="menu-items">
         <transition name="fade">
@@ -130,10 +129,9 @@ export default {
   text-transform: uppercase;
   font-size: 1.6rem;
   align-self: flex-end;
-  margin: 1rem;
-
-
+padding: 2rem;
   @media only screen and (min-width: 40em) {
+    padding: 0;
     margin: 0 4rem;
     font-size: 2rem;
     cursor: pointer;
@@ -161,6 +159,7 @@ export default {
     display: none;
     flex-direction: column;
     @media only screen and (min-width: 40em) {
+      z-index: 6;
       display: block;
       list-style: none;
       margin: 1rem 5rem 0 0;
@@ -190,6 +189,8 @@ export default {
 
 .hamburger-button {
   position: absolute;
+  z-index: 5;
+
   right: 1rem;
   top: 2rem;
   @media only screen and (min-width: 40em) {
@@ -205,6 +206,7 @@ export default {
 }
 
 .mobil-menu {
+  z-index: 6;
   position: absolute;
   top: -1.5rem;
   left: 0;
@@ -221,7 +223,7 @@ export default {
   li {
     padding: 1.4rem;
     color: #216477;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-decoration: none;
     cursor: pointer;
 

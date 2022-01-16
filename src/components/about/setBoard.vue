@@ -25,7 +25,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 80vw;
-  margin: 0 3rem;
+  margin: 0;
   @media only screen and (min-width: 40em) {
 
     margin: 0;
