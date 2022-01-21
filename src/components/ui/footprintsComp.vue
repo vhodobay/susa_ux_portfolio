@@ -15,6 +15,10 @@
       <br/>
     </div>
 
+    <div class="birds">
+      <img style="width: 28vw" src="../../assets/images/SVG/petrolbluebird.svg" alt="crane"/>
+    </div>
+
     <div class="footprints" id="fp_1"></div>
     <div class="footprints" id="fp_2" key="1"></div>
     <div id="last-footprint" class="footprints" key="2"></div>
@@ -22,10 +26,12 @@
 </template>
 
 <script>
+
 export default {
   name: "footprintsComp",
   data() {
     return {
+      upAndDown: false,
       startFeetBig: false,
       inView: false,
       interval: 550,
@@ -38,12 +44,24 @@ export default {
       seq_6: false,
     };
   },
+  props: ['isUserScrolling',],
   mounted() {
     this.seqStarter();
   },
   beforeUnmount() {
   },
   watch: {
+    isUserScrolling() {
+      this.upAndDown = !this.upAndDown
+
+      const bird = document.querySelector('.birds')
+      if (this.upAndDown) {
+        bird.animate([{}, {transform: 'rotate(35deg)'}], {delay: 100, duration: 1000, fill: 'forwards'})
+      } else {
+        bird.animate([{}, {transform: 'rotate(-15deg)'}], {delay: 100, duration: 1000, fill: 'forwards'})
+
+      }
+    },
     startFeetBig() {
       this.animateBigFeet();
     },
@@ -154,6 +172,15 @@ export default {
   }
 
   width: 1rem;
+}
+
+.birds {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  @media only screen and (min-width: 40em) {
+    display: none;
+  }
 }
 
 .footprints {

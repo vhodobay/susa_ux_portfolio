@@ -27,7 +27,7 @@
           ></hero-comp>
         </section>
 
-        <footprints-comp></footprints-comp>
+        <footprints-comp :key="1" :is-user-scrolling="isUserScrolling"></footprints-comp>
 
         <section id="my-work-comp">
           <my-work-comp
@@ -35,7 +35,7 @@
               :wide-screen="wideScreen"
           ></my-work-comp>
         </section>
-        <footprints-comp></footprints-comp>
+        <footprints-comp :key="2" :is-user-scrolling="isUserScrolling"></footprints-comp>
 
         <section id="about-comp">
           <about-comp :wide-screen="wideScreen"
@@ -43,7 +43,7 @@
           ></about-comp>
         </section>
 
-        <footprints-comp></footprints-comp>
+        <footprints-comp :key="3" :is-user-scrolling="isUserScrolling"></footprints-comp>
         <section class="board-container" id="skills">
           <set-board v-if="education"
                      :traits="education" title="Education"
@@ -98,7 +98,6 @@ export default {
     return {
       contactMe: false,
       currentScrollY: 0,
-      handleDebounceScroll: null,
       isUserScrolling: false,
       intersectionObserver: null,
       heroInView: false,
@@ -177,7 +176,7 @@ export default {
 
       setTimeout(() => {
         this.currentScrollY = window.scrollY;
-      }, 100);
+      }, 200);
     },
   },
   mounted() {
@@ -185,7 +184,7 @@ export default {
     this.currentScrollY = window.scrollY;
 
     // this.handleDebounceScroll = debounce(this.handleScroll, 200);
-    // window.addEventListener("scroll", this.handleDebounceScroll);
+    window.addEventListener("scroll", this.handleScroll);
 
     this.intersectionObserver = new IntersectionObserver(
         this.onElementIntersects,
@@ -211,14 +210,6 @@ export default {
     },
   },
   watch: {
-    isUserScrolling() {
-      console.log(
-          "scrolled",
-          this.isUserScrolling,
-          this.currentScrollY,
-          window.scrollY
-      );
-    },
     scrollToWorkState() {
       this.scrollTo('my-work-comp')
     },
@@ -235,7 +226,6 @@ export default {
 .board-container {
   width: 100%;
   @media only screen and (min-width: 40em) {
-
     display: flex;
     justify-content: space-around;
   }

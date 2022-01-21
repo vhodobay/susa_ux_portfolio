@@ -157,18 +157,17 @@ export default {
     margin: 3rem 0;
 
   }
-    @media only screen and (min-width: 1300px) {
+  @media only screen and (min-width: 1300px) {
     align-items: stretch;
-
   }
 }
 
 .project-unit {
   display: none;
   @media only screen and (min-width: 40em) {
-display: block;
+    display: block;
   }
-  }
+}
 
 .container_2 {
   margin: 2rem;

@@ -27,20 +27,20 @@ export default {
   width: 80vw;
   margin: 0;
   @media only screen and (min-width: 40em) {
-
     margin: 0;
-    width: 26vw;
+    width: 27vw;
   }
 
   ul {
     list-style: none;
-    padding: 1rem 0;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: space-between;
 
 
     li {
+      margin: 0 2rem;
       text-align: start;
       font-size: 1.8rem;
       font-weight: 900;
