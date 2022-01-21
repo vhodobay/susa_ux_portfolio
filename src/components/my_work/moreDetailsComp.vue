@@ -33,14 +33,18 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  margin-top: 3rem;
-  widows: 100%;
   display: flex;
-  justify-content: space-between;
+flex-direction: column;
+  margin-top: 3rem;
+  @media only screen and (min-width: 40em) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-  h2 {
+    h2 {
     color: var(--color-petrol-blue);
-    padding: 0rem 1rem;
+    padding: 0 1rem;
     border-bottom: solid 0.3rem var(--color-yellow);
     font-size: 2.2rem;
   }
