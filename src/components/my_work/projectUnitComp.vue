@@ -67,13 +67,13 @@ export default {
       height: auto;
 
     }
-    }
+  }
 }
 
 .title {
   display: inline-block;
   position: absolute;
-  right: 5rem;
+  right: 4rem;
   bottom: 16vh;
   align-self: center;
   text-align: start;
@@ -105,15 +105,16 @@ export default {
 }
 
 .yellow {
+display: none;
 
-    position: absolute;
-  height: 7.5rem;
-  background-color: var(--color-yellow);
-  width: 1rem;
-  right: 3rem;
-  bottom: 16vh;
-  transition: all 0.3s ease;
   @media only screen and (min-width: 40em) {
+    display: block;
+    position: absolute;
+
+    background-color: var(--color-yellow);
+    width: 1rem;
+
+    transition: all 0.3s ease;
     height: 5.5rem;
     right: -5rem;
     bottom: 4rem;

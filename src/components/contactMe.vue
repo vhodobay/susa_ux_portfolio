@@ -66,7 +66,7 @@ export default {
 .container {
   position: fixed;
   z-index: 7;
-  right: -31.5rem;
+  right: -32rem;
   top: 6rem;
   display: flex;
   flex-direction: column;
