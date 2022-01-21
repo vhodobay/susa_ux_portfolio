@@ -32,7 +32,6 @@ export default {
   }
 
   ul {
-    list-style: none;
     padding: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -40,7 +39,7 @@ export default {
 
 
     li {
-      margin: 0 2rem;
+      margin: .2rem 1.5rem;
       text-align: start;
       font-size: 1.8rem;
       font-weight: 900;
