@@ -27,7 +27,7 @@
           ></hero-comp>
         </section>
 
-        <footprints-comp :key="1" :is-user-scrolling="isUserScrolling"></footprints-comp>
+        <vonal-gomb-comp @on-clicked="heroButtonClicked" :wide-screen="wideScreen"></vonal-gomb-comp>
 
         <section id="my-work-comp">
           <my-work-comp
@@ -35,7 +35,8 @@
               :wide-screen="wideScreen"
           ></my-work-comp>
         </section>
-        <footprints-comp :key="2" :is-user-scrolling="isUserScrolling"></footprints-comp>
+
+        <vonal-gomb-comp @on-clicked="recipesClicked" :wide-screen="wideScreen">recipes</vonal-gomb-comp>
 
         <section id="about-comp">
           <about-comp :wide-screen="wideScreen"
@@ -43,7 +44,11 @@
           ></about-comp>
         </section>
 
-        <footprints-comp :key="3" :is-user-scrolling="isUserScrolling"></footprints-comp>
+        <vonal-gomb-comp @on-clicked="pdfButtonClicked" :wide-screen="wideScreen">
+          <a style="text-decoration: none; color: white;" href="/files/Resume_Susa.pdf">resume</a>
+        </vonal-gomb-comp>
+
+
         <section class="board-container" id="skills">
           <set-board v-if="education"
                      :traits="education" title="Education"
@@ -68,10 +73,10 @@ import Navbar from "@/components/navbar/Navbar";
 import HeroComp from "@/components/hero/HeroComp";
 import AboutComp from "@/components/about/aboutComp";
 import SetBoard from "@/components/about/setBoard";
-import FootprintsComp from "@/components/ui/footprintsComp";
 import MyWorkComp from "@/components/my_work/myWorkComp";
 import BottomBlur from "@/components/ui/bottomBlur";
 import sanity from '../client'
+import VonalGombComp from "@/components/ui/vonalGombComp";
 
 // import debounce from "lodash.debounce";
 
@@ -85,10 +90,10 @@ const toolQuery = `*[_type == "tools"]{skill}`
 export default {
   name: "Home",
   components: {
+    VonalGombComp,
     ContactMe,
     BottomBlur,
     MyWorkComp,
-    FootprintsComp,
     SetBoard,
     AboutComp,
     HeroComp,
@@ -178,6 +183,15 @@ export default {
         this.currentScrollY = window.scrollY;
       }, 200);
     },
+    heroButtonClicked(){
+      console.log('clicked')
+    },
+    pdfButtonClicked(){
+      console.log('clicked')
+    },
+    recipesClicked(){
+      window.location.href = "https://lilafuge.hu/author/susainthekitchen/";
+    }
   },
   mounted() {
     this.fetchEducation()

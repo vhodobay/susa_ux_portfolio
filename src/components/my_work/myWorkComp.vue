@@ -64,23 +64,4 @@ export default {
   }
 }
 
-.content-area {
-
-}
-
-.work-container {
-
-}
-
-.yellow-container {
-
-
-}
-
-.title {
-
-}
-
-.graphics {
-}
 </style>
