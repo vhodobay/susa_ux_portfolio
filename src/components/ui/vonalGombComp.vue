@@ -1,30 +1,28 @@
 <template>
-<div class="container">
+  <div class="container">
 
 
-<div class="button-container">
-  <button @click="$emit('onClicked')">
-    <slot></slot>
-  </button>
-</div>
+    <div class="button-container">
+      <button @click="$emit('onClicked')">
+        <slot></slot>
+      </button>
+    </div>
 
-  <span class="horizontal-yellow"></span>
-  <span class="horizontal-yellow"></span>
-  <span v-if="wideScreen" class="horizontal-yellow"></span>
-  <span v-if="wideScreen" class="horizontal-yellow"></span>
-  <span v-if="wideScreen" class="horizontal-yellow"></span>
+    <span class="horizontal-yellow"></span>
+    <span class="horizontal-yellow"></span>
+    <span v-if="wideScreen" class="horizontal-yellow"></span>
+    <span v-if="wideScreen" class="horizontal-yellow"></span>
+    <span v-if="wideScreen" class="horizontal-yellow"></span>
 
 
-
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "vonalGombComp",
-  props:["wideScreen"],
-  emits:['onClicked'],
-
+  props: ["wideScreen"],
+  emits: ['onClicked'],
 
 
 }
@@ -47,20 +45,28 @@ export default {
   border-radius: 99rem;
   margin-right: 1rem;
 
-  button{
+  button {
     background-color: #216477;
     color: white;
     width: 8rem;
     height: 8rem;
     border-radius: 99rem;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+    &:active {
+      transform: scale(.98);
+      box-shadow: 2px 4px 10px rgba(252,252,252, .5);
+    }
   }
 }
 
 .horizontal-yellow {
-  width: 1.6rem;
-  border: solid .5rem var(--color-yellow);
-  height: 0;
-  margin: 0 .5rem;
+  width: 2.8rem;
+  background-color: var(--color-yellow);
+  height: 1rem;
+  margin: 0 .6rem;
 }
 
 </style>

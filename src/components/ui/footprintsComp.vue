@@ -15,13 +15,6 @@
       <br/>
     </div>
 
-    <div class="birds">
-      <img style="width: 28vw" src="../../assets/images/SVG/petrolbluebird.svg" alt="crane"/>
-    </div>
-
-    <div class="footprints" id="fp_1"></div>
-    <div class="footprints" id="fp_2" key="1"></div>
-    <div id="last-footprint" class="footprints" key="2"></div>
   </div>
 </template>
 
@@ -157,6 +150,7 @@ export default {
 <style scoped lang="scss">
 .footprint-container {
   width: 100%;
+  height: 12rem;
   position: relative;
 }
 

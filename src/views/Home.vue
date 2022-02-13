@@ -27,6 +27,7 @@
           ></hero-comp>
         </section>
 
+        <footprints-comp></footprints-comp>
         <vonal-gomb-comp @on-clicked="heroButtonClicked" :wide-screen="wideScreen"></vonal-gomb-comp>
 
         <section id="my-work-comp">
@@ -36,7 +37,8 @@
           ></my-work-comp>
         </section>
 
-        <vonal-gomb-comp @on-clicked="recipesClicked" :wide-screen="wideScreen">recipes</vonal-gomb-comp>
+        <footprints-comp></footprints-comp>
+        <vonal-gomb-comp @on-clicked="recipesClicked" :wide-screen="wideScreen">my recipes</vonal-gomb-comp>
 
         <section id="about-comp">
           <about-comp :wide-screen="wideScreen"
@@ -44,10 +46,10 @@
           ></about-comp>
         </section>
 
+        <footprints-comp></footprints-comp>
         <vonal-gomb-comp @on-clicked="pdfButtonClicked" :wide-screen="wideScreen">
-          <a style="text-decoration: none; color: white;" href="/files/Resume_Susa.pdf">resume</a>
+          <a style="text-decoration: none; color: white;" href="/files/Resume_Susa.pdf">my resume</a>
         </vonal-gomb-comp>
-
 
         <section class="board-container" id="skills">
           <set-board v-if="education"
@@ -77,6 +79,7 @@ import MyWorkComp from "@/components/my_work/myWorkComp";
 import BottomBlur from "@/components/ui/bottomBlur";
 import sanity from '../client'
 import VonalGombComp from "@/components/ui/vonalGombComp";
+import FootprintsComp from "@/components/ui/footprintsComp";
 
 // import debounce from "lodash.debounce";
 
@@ -90,6 +93,7 @@ const toolQuery = `*[_type == "tools"]{skill}`
 export default {
   name: "Home",
   components: {
+    FootprintsComp,
     VonalGombComp,
     ContactMe,
     BottomBlur,
