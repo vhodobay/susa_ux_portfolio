@@ -28,7 +28,7 @@
         </section>
 
         <footprints-comp></footprints-comp>
-        <vonal-gomb-comp @on-clicked="heroButtonClicked" :wide-screen="wideScreen"></vonal-gomb-comp>
+        <vonal-gomb-comp @on-clicked="heroButtonClicked" :wide-screen="wideScreen">my motto</vonal-gomb-comp>
 
         <section id="my-work-comp">
           <my-work-comp
@@ -188,10 +188,9 @@ export default {
       }, 200);
     },
     heroButtonClicked(){
-      console.log('clicked')
+      window.location.href = "https://www.ted.com/talks/alain_de_botton_a_kinder_gentler_philosophy_of_success"
     },
     pdfButtonClicked(){
-      console.log('clicked')
     },
     recipesClicked(){
       window.location.href = "https://lilafuge.hu/author/susainthekitchen/";
