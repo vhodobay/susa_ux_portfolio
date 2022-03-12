@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <vonal-gomb-comp :wide-screen="wideScreen"><a :href="assetsReady.caseStudy ? assetsReady.caseStudy : '#'">case
+  <vonal-gomb-comp v-if="assetsReady && assetsReady.caseStudy" :wide-screen="wideScreen"><a :href="assetsReady.caseStudy ? assetsReady.caseStudy : '#'">case
     study</a></vonal-gomb-comp>
 
   <div class="container_2">
@@ -133,7 +133,7 @@ export default {
           slug: this.$route.params.slug,
         });
         this.assetsReady = assetsReady[0];
-        console.log(assetsReady)
+
       } catch (e) {
         console.log(e);
       }
