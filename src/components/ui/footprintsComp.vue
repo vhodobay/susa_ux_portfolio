@@ -113,36 +113,7 @@ export default {
         this.seq_1 = true;
       }, 6000);
     },
-    animateBigFeet() {
-      const foot_1 = document.querySelector("#fp_1");
-      const foot_2 = document.querySelector("#fp_2");
-      const foot_3 = document.querySelector("#last-footprint");
 
-      const animations = [{}, {transform: "scale(1.5)"}];
-      const animationTiming_1 = {
-        duration: this.interval,
-        fill: "forwards",
-        direction: "alternate-reverse",
-        easing: "ease-in-out",
-      };
-      const animationTiming_2 = {
-        duration: this.interval,
-        fill: "forwards",
-        direction: "alternate-reverse",
-        easing: "ease-in-out",
-        delay: 400,
-      };
-      const animationTiming_3 = {
-        duration: this.interval,
-        fill: "forwards",
-        direction: "alternate-reverse",
-        easing: "ease-in-out",
-        delay: 800,
-      };
-      foot_1.animate(animations, animationTiming_1);
-      foot_2.animate(animations, animationTiming_2);
-      foot_3.animate(animations, animationTiming_3);
-    },
   },
 };
 </script>

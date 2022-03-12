@@ -43,6 +43,18 @@ export default {
       type: "string",
     },
     {
+      title: 'Case Study',
+      name: 'caseStudy',
+      type: 'file',
+      fields: [
+        {
+          name: 'description',
+          type: 'string',
+          title: 'Leírás'
+        }
+      ]
+    },
+    {
       name: "overview",
       title: "Overview",
       type: "text",
@@ -62,7 +74,7 @@ export default {
       title: "Outcomes",
       type: "text",
     },
-
+    
     {
       name: "mainImage",
       title: "Main image",
@@ -126,7 +138,7 @@ export default {
       options: {
         hotspot: false,
       },
-    },    {
+    }, {
       name: "desktopImage_2",
       title: "Desktop Kép 2",
       type: "image",
@@ -135,7 +147,7 @@ export default {
       },
     },
   ],
-
+  
   preview: {
     select: {
       title: "title",

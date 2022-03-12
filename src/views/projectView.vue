@@ -20,7 +20,8 @@
     </div>
   </div>
 
-    <vonal-gomb-comp :wide-screen="wideScreen">case study</vonal-gomb-comp>
+  <vonal-gomb-comp :wide-screen="wideScreen"><a :href="assetsReady.caseStudy ? assetsReady.caseStudy : '#'">case
+    study</a></vonal-gomb-comp>
 
   <div class="container_2">
     <more-details-comp
@@ -86,7 +87,8 @@ import VonalGombComp from "@/components/ui/vonalGombComp";
 
 
 const imageBuilder = imageUrlBuilder(sanity);
-const assetQuery = `*[slug.current == $slug] {_id, title, url, role, company, date, projectType, problemStatement, overview, process, outcomes,
+const assetQuery = `*[slug.current == $slug] {_id, title, url, role, company, date, projectType,
+"caseStudy":caseStudy.asset->url, problemStatement, overview, process, outcomes,
  "image": mainImage{asset->{_id,url}},
  "imagePhone_1": phoneImage_1{asset->{_id, url}},
  "imagePhone_2": phoneImage_2{asset->{_id, url}},
@@ -131,7 +133,7 @@ export default {
           slug: this.$route.params.slug,
         });
         this.assetsReady = assetsReady[0];
-
+        console.log(assetsReady)
       } catch (e) {
         console.log(e);
       }
