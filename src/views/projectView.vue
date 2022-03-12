@@ -20,6 +20,8 @@
     </div>
   </div>
 
+    <vonal-gomb-comp :wide-screen="wideScreen">case study</vonal-gomb-comp>
+
   <div class="container_2">
     <more-details-comp
         v-if="assetsReady && assetsReady.overview && assetsReady.problemStatement"
@@ -80,6 +82,7 @@ import MoreDetailsComp from "@/components/my_work/moreDetailsComp.vue";
 import ImagesPhone from "@/components/my_work/imagesPhone.vue";
 import ContactMe from "@/components/contactMe";
 import LaptopsImages from "@/components/my_work/laptopsImages";
+import VonalGombComp from "@/components/ui/vonalGombComp";
 
 
 const imageBuilder = imageUrlBuilder(sanity);
@@ -98,6 +101,7 @@ const assetQuery = `*[slug.current == $slug] {_id, title, url, role, company, da
 export default {
   name: "projectView",
   components: {
+    VonalGombComp,
     LaptopsImages,
     ContactMe,
     Navbar,
@@ -112,11 +116,14 @@ export default {
       contactMe: false,
     };
   },
-  computed: {},
+  computed: {
+    wideScreen() {
+      return window.innerWidth >= 600;
+    },
+  },
   methods: {
     contactMeStart() {
       this.contactMe = !this.contactMe
-
     },
     async theData() {
       try {
