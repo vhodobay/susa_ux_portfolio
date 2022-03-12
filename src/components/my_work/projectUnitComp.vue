@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="image">
-      <img :src="assetSet.image.asset.url" alt="project picture" @click="goToUrl"/>
+      <img style="height: 20rem" :src="assetSet.image.asset.url" alt="project picture" @click="goToUrl"/>
     </div>
     <div class="title" v-on:click="goToUrl">
       <h2>{{ assetSet.title }}</h2>
